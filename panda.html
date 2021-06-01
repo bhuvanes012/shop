@@ -1,0 +1,82 @@
+<html>
+<head>
+	<title>Panda Walking Animation</title>
+	<link rel="stylesheet" href = "Moving_Panda.css">
+	<script src="js/jquery-3.4.1.js"></script>
+</head>
+<style>
+    
+
+#panda
+	{
+	 
+		top:600px;
+		margin-top: 40%;
+		background: url(./img/panda.png); 
+		width:250px;
+		height:330px;		
+		animation:walking_animation 1s steps(12) infinite,move_forward 5s linear infinite;	
+	}
+	#panda2
+	{
+	 
+		top:600px;
+		margin-top: 40%;
+		background: url(./img/panda.png); 
+		width:250px;
+		height:330px;		
+		animation:walking_animation 1s steps(12) infinite,move_backward 8s linear infinite;	
+	}
+
+
+
+
+@keyframes walking_animation
+	{
+		0%{background-position:0px;}
+		100%{background-position:3000px;}
+	}
+
+@keyframes move_forward
+	{
+		0%{transform:translateX(-100px);}
+		100%{transform:translateX(1366px);}
+	}
+@keyframes move_backward
+{
+	100%{transform:translateX(-100px);}
+	0%{transform:translateX(1366px);}
+}
+ 
+	   
+ </style>
+  
+<body>
+	<a href="#" onclick="play()">
+
+	<audio id="audio" src="https://git.io/JUW4q" loop="loop"></audio>
+
+	<script>
+      function play() 
+      {
+        var audio = document.getElementById("audio");
+        audio.play();
+      }
+	  setInterval(move, 10000);
+	function move(){
+		if(localStorage.getItem("phone")===null){
+			window.location.href="otp.html"; 
+		}else{
+			window.location.href="home.html"; 
+		}
+	}
+
+    </script>
+	
+	<div id="panda"></div>
+	  
+	<div id="panda2"></div>
+	<div id="street"></div>
+	</a>
+</body>
+</html>

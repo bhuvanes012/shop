@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap_V_4.5.2.css">
+  <link rel="stylesheet" href="css/fontawsome_V_5.7.0.css">
+  <link rel="stylesheet" href="css/swiper.min.css">
+  <link rel="stylesheet" href="css/sweetalert2_V_10.16.0.css">
+  <script src="js/jquery-3.4.1.js"></script>
+  <script src="js/bootstrap_V_4.5.2.js"></script>
+  <script src="js/swiper.min.js"></script>
+  <script src="js/sweetalert_min.js"></script>
+  <script  type="text/javascript" src="js/sweetalert2_V_10.16.0.js"></script>
+  <script>
+      $(document).ready(function(){
+        
+      });
+  </script>
+<style>
+    html,body{
+        margin-bottom: 10%;
+        height: 100%;
+        margin-top: 5%;
+    }
+    img{
+        background-position: center;
+        background-size: cover;
+        align-items: center;
+        margin-bottom: 2%;
+        padding-bottom: 2%;
+         
+      }
+      h3{
+        text-align: start;
+      }
+      #home{
+        padding-bottom: 17%;
+      }
+       
+       
+      #addButton{
+          margin-bottom: 1%;
+           
+      }
+       
+      .price{
+          font-size:xx-large;
+      }
+      .regular-price{
+          font-size:medium;
+          margin-left: 2%;  
+      }
+      .percent{
+          margin-left: 4%;
+      }
+      .productName{
+          font-size: x-large;
+      }
+      .swiper-wrapper{
+        padding-bottom: 30px;
+      }
+      .headertag {
+       position: fixed;
+     }  
+     #reset{
+         margin-right: 20%;
+         margin-left: 5%;
+     } 
+     #fixed_nav{
+       margin-bottom: 5%;
+     }
+     img{
+       margin-bottom: 7%;
+     }
+
+      
+</style>
+ 
+</head>
+<body>
+    
+  <div  class="container-fluid ">
+    <div id="checkpro" class="row ">
+  
+                <div class="col12 d-flex justify-content-around pro21">
+                  <div class="col-4 ">
+                    <img width="100" height="100"  src="./php/img/21616925661img1.png">  
+                     
+                    <span><b>Price :</b> 4545</span> 
+                    
+                  </div>
+                  
+                  <div style="margin-left: 10%;" class="col8 align-self-end   pro21">                       
+                    <div class=" d-flex justify-content-center ">
+                        <textarea  style="border: none ; width: 100%;"  readonly rows = "2"  >Good day  good is best biscute in pamban and indian good product for every  </textarea>  
+                        <br>
+                    </div >
+                    <div class=" d-flex justify-content-start pro21">   
+                      <button class="btn btn-danger" >-</button>                    
+                      <input style="align-content: center" readonly id="quantity" type="number" oninput='format(this)' min="1" max="24" step="1"/>
+                      <button class="btn btn-success" >+</button> 
+                      <br>
+                    </div>
+                    <div class=" d-flex justify-content-start ">
+                      <b>Total</b> :<span> 4545</span>
+                    </div>
+                  
+                  </div>
+                </div>
+ 
+                
+    </div>
+     </div>
+    <div id="delivery_charge">
+      <br>
+      <b>Delivery charge: <span id="del_charge">323</span></b>
+      
+    </div>
+   
+
+    <div id="form">
+        <lable><b> Name : </b></lable>
+        <input id="user_name" type="text" placeholder="Enter Your Name" class="form-control" >
+        <br>
+        <lable><b> Mobile No : </b></lable>
+        <input id="user_phone" type="number" placeholder="Enter 10 digit mobile number" class="form-control" >
+        <br>
+        <lable><b> Address : </b></lable>
+        <textarea id="user_add"  placeholder="Enter Your Address" class="form-control"> </textarea>
+        <br>
+        <lable><b> Pin Code : </b></lable>
+        <input id="user_zip" type="number" placeholder="Enter 6 digit pincode " class="form-control" >
+        <br>
+        <div class="row">
+           <button id="reset" onclick="reset()" class="col6 btn btn-warning" >Reset</button>
+           <button  id="sub" onclick="placeOrder()" class="col6 btn btn-success">Submit</button>
+        </div>
+
+    </div>
+   
+    <nav id="fixed_nav" class="navbar fixed-bottom navbar-light bg-light">
+        <a class="navbar-brand" href="#">Net Total :<span value ='21' id="total"></span></a>
+        <button class="btn btn-success col-4" onclick="confirm()"  >Place Order</button>
+    </nav>
+    <script>
+  
+      readTotal();
+       
+      $("#form").hide();
+      if( localStorage.getItem("order") === null){
+      var ord = {}; 
+      localStorage.setItem("order", JSON.stringify(ord));
+      }else{
+        console.log(localStorage.getItem("order") )
+      } 
+      var store_id ='';
+      var order = JSON.parse(localStorage.getItem("order")); 
+      $("#checkpro").empty();
+       Object.entries(order).forEach(item => {
+                 console.log("dhdhd"+item[1].total)
+                 
+                 var  prodArray = [];
+                 prodArray.push("<div style='margin-bottom: 7%;'  class='col12 d-flex justify-content-start pro"+item[0]+"'>");
+                    prodArray.push("<div class='col-4 '> ");
+                     prodArray.push("<img width='100' height='90'  src='./php/"+item[1].img+"'>"); 
+                     prodArray.push("<span> <b>Price :</b>"+item[1].price+"</span>"); 
+                    prodArray.push("</div>"); 
+
+                    prodArray.push("<div style='margin-left: 10%;'  class='col12    pro"+item[0]+"'>"); 
+                      prodArray.push(" <div class='d-flex justify-content-start'>");
+                        prodArray.push("<textarea  style='border: none ; width: 100%;'  readonly rows = '2'  >"+item[1].name.split("~").join(" ") +" </textarea>"); 
+                        prodArray.push("<br>"); 
+                      prodArray.push("</div>"); 
+
+                    prodArray.push("<div class=' d-flex justify-content-start pro"+item[0]+"'> "); 
+                        prodArray.push("<button id='addButtonMinus"+item[0]+"'  class='btn btn-danger' onclick='minus("+item[1].store_id+","+item[0]+","+item[1].price+")'  >-</button>  "); 
+                        prodArray.push(" <input  style='border: none ; text-align: center; width: 100%;'  readonly id='quantity"+item[0]+"' type='number' value ='"+item[1].quantity+"' oninput='format(this)' min='1' max='24' step='1'/>"); 
+                        prodArray.push("<button id='addButtonAdd"+item[0]+"' class='btn btn-success' onclick='add("+item[1].store_id+","+item[0]+","+item[1].price+")'  >+</button> "); 
+                        prodArray.push("<br>");
+                    prodArray.push("</div>");
+                    prodArray.push("<div class='d-flex justify-content-start'> "); 
+                    prodArray.push("  <b>Total</b> : <span id='tot"+item[0]+"'>  "+item[1].total+"</span>");
+                    prodArray.push(" </div> </div> </div>  "); 
+                  
+                    $("#checkpro").append(prodArray.join(""));
+
+                    
+                    store_id= item[1].store_id;
+               
+        }) 
+
+ 
+         
+
+    
+        //Add value
+        function add(store_id,id,price){
+            var currentvalue = $("#quantity"+id).val();
+             
+            $("#quantity"+id).val(parseInt(currentvalue)+1);
+            addProductDetail("","",store_id,id,price);
+        }
+        //minus value
+        function minus(store_id,id,price){
+              var currentvalue = $("#quantity"+id).val();
+              if(parseInt(currentvalue)>1){
+                $("#quantity"+id).val(parseInt(currentvalue)-1);
+                addProductDetail("","",store_id,id,price)
+              }
+              if(parseInt(currentvalue)==1){  // remove the add,minus element and show the addButton
+                $(".pro"+id).remove();
+                delete order[id];
+                localStorage.setItem("order", JSON.stringify(order));
+                console.log(order);
+                console.log(order.length);
+              }
+        }
+        function addProductDetail(name,img,store_id,id ,price){
+          var orderDetail = new Object();
+          
+         
+         
+               orderDetail.quantity = $("#quantity"+id).val();
+               orderDetail.price =price;
+               orderDetail.total =($("#quantity"+id).val()*price); 
+               $("#tot"+id).text( $("#quantity"+id).val()*price); 
+               orderDetail.store_id =store_id; 
+               if(name!=""){
+                orderDetail.name =name; 
+               } else{
+                orderDetail.name =order[id].name; 
+               }   
+               if(img!=""){
+                orderDetail.img =img; 
+               }  else{
+                orderDetail.img =order[id].img; 
+               }  
+               order[id]  = orderDetail;                   
+               console.log( Object.keys(order).length )
+               var tot =0 ;
+               localStorage.setItem("order", JSON.stringify(order));
+               Object.entries(order).forEach(item => {
+                 console.log("dhdhd"+item[1].total)
+                 tot += item[1].total
+                
+                }) 
+                if(sessionStorage.getItem("store_distance")===null){
+
+                }else{
+                  var del_cha = sessionStorage.getItem("store_distance")*4;
+                  if(del_cha>15){
+                    tot = tot+15;
+                  }else{
+                    tot = tot+(sessionStorage.getItem("store_distance")*4)
+                  }
+                }
+               
+               console.log("Tot----->"+tot);  
+               console.log((sessionStorage.getItem("store_distance")*4));
+               $("#total").text(Math.round(tot));
+        }
+          
+        function readTotal(){
+        var order = JSON.parse(localStorage.getItem("order"));
+        
+        var total =0;
+         Object.entries(order).forEach(item => {
+                 console.log("store id"+item[1].store_id +sessionStorage.getItem("store_product"))               
+                 if(item[1].store_id == sessionStorage.getItem("store_product")){
+                  total += item[1].total                   
+                 }
+          }) 
+           console.log("total--->>"+total); 
+           if(sessionStorage.getItem("store_distance")===null){
+
+            }else{
+              var del_charge = Math.round(sessionStorage.getItem("store_distance")*4);
+              if(del_charge<15){
+                del_charge=15;
+                total = total+15
+              }else{
+              total = total+(sessionStorage.getItem("store_distance")*4)
+              
+              }  
+              $("#del_charge").text(del_charge); 
+            }
+            console.log("tot--->?"+total);
+           $("#total").text(Math.round(total));    
+      }
+
+     function confirm(){
+
+        var order = JSON.parse(localStorage.getItem("order")); 
+        var total=0;
+        Object.entries(order).forEach(item => {
+                 console.log("store id"+item[1].store_id +sessionStorage.getItem("store_product"))               
+                 if(item[1].store_id == sessionStorage.getItem("store_product")){
+                  total += item[1].total                   
+                 }
+                }) 
+
+          
+            if(Object.keys(order).length !=0 && total>sessionStorage.getItem("minimum_order") ){                       
+            $("#checkpro").hide();
+            $("#fixed_nav").hide();
+            $("#delivery_charge").hide();
+            
+            $("#form").show();           
+            }else{
+              Swal.fire("Minimum order is "+sessionStorage.getItem("minimum_order"))
+              
+            }
+     }  
+     
+     function reset(){
+      $("#form input").val("");
+      $("#form textarea").val("");
+     }
+
+    function placeOrder(){
+       var status=true;
+
+       if($("#user_name").val()=="" && status){
+           status=false;
+           Swal.fire("Please Enter Your Name");
+           
+           $("#user_name").focus();
+       }
+       if($("#user_phone").val().length!=10   && status){
+           status=false;
+           Swal.fire("Enter 10 digit Mobile Number");           
+           $("#user_phone").focus();
+       }
+       if($("#user_add").val() ==""   && status){
+           status=false;
+           Swal.fire("Please Enter Your address");   
+           $("#user_add").focus();
+       }
+       if($("#user_zip").val().length!=6   && status){
+           status=false;
+           Swal.fire("Enter 6 digit pincode");  
+           $("#user_zip").focus();
+       }
+
+       if(status){
+        var order = JSON.parse(localStorage.getItem("order"));
+        var del_charge =0;
+        if(sessionStorage.getItem("store_distance")===null){
+          del_charge =0;
+        } else{
+          del_charge =Math.round(sessionStorage.getItem("store_distance")*4);
+          if(del_charge<15){
+            del_charge=15;
+          }
+        } 
+        $.ajax({   //like 
+              url : 'php/index.php', // php URL
+              type: "POST",
+              data: {user_id:localStorage.getItem("user_id"),store_id:store_id, delivery_charge:del_charge ,phone:$("#user_phone").val(),name:$("#user_name").val(),address:$("#user_add").val(),zip:$("#user_zip").val(),order_details:order,request:"place_order"}, 
+              dataType:"TEXT",
+              success: function(data)
+              {
+                console.log(data);
+                if(data=="succes"){
+                  swal("Order Successfully", { icon: "success",   });
+                  
+                }
+                
+              }
+            });
+       }
+
+
+    }
+
+
+
+    </script>
+</body>
+</html>

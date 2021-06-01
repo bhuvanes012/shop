@@ -1,0 +1,43 @@
+<html>
+
+    <script src="jquery-3.4.1.js"> </script>
+    <script>
+        $(document).ready(function(){
+            $("#file").hide();
+            $("#img").click(function(){
+                $("#file").click();
+           
+              
+            })
+           // console.log($("#file").val())
+
+
+        })
+        function readURL(input) {
+            //console.log(input)
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+<body bgcolor="pink">
+<center>
+<h3> FILE UPLOADING </h3>
+<hr>
+<form name="form" method="post" action="php/fileupload.php" enctype="multipart/form-data" >
+ 
+    <img src="10.jpg" id="img">
+    <input type="file" name="my_file" id="file" onchange="readURL(this)" accept="image/x-png,image/gif,image/jpeg" />
+    <input type="submit" name="submit" value="Upload"/>
+    </form>
+    
+    
+</center>
+</body>
+</html>

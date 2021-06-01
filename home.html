@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap_V_4.5.2.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/swiper.min.css"> 
+  <link rel="stylesheet" href="css/sweetalert2_V_10.16.0.css">
+  <script src="js/jquery-3.4.1.js"></script>
+  <script src="js/bootstrap_V_4.5.2.js"></script>
+  <script src="js/swiper.min.js"></script>
+  <script src="js/sweetalert_min.js"></script> 
+  <script  type="text/javascript" src="js/sweetalert2_V_10.16.0.js"></script>
+ 
+  <script>
+      $(document).ready(function(){
+        
+      });
+  </script>
+<style>
+
+.swal2-popup{
+    padding: 0%;
+  }
+.swal2-content{
+  height: 80vh;
+  width: 100vh;
+  margin-left: 0%;
+  overflow-y: auto;
+  padding: 0%;
+}
+.swal-height {
+  height: 80vh;
+}
+    html,body{
+        margin-bottom: 10%;
+        height: 100%;
+    }
+    .cat_type{
+      background-size: cover;
+         
+        margin-bottom: 2%;
+        padding-bottom: 2%;
+        border-radius: 60%;
+    }
+    img{
+        
+        background-size: cover;
+         
+        margin-bottom: 2%;
+        padding-bottom: 2%;
+        border-radius: 20%;
+         
+      }
+      h3{
+        text-align: start;
+      }
+      #home{
+        padding-bottom: 17%;
+      }
+       
+       
+      #addButton{
+          margin-bottom: 1%;
+           
+      }
+       
+      .price{
+          font-size:xx-large;
+      }
+      .regular-price{
+          font-size:medium;
+          margin-left: 2%;  
+      }
+      .percent{
+          margin-left: 4%;
+      }
+      #productName{
+          font-size: x-large;
+      }
+      .swiper-wrapper{
+        padding-bottom: 30px;
+      }
+      .headertag {
+       position: fixed;
+     }   
+     .checked {
+        color: orange;
+        }
+
+        .spinner {
+  margin: 100px auto;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}  
+
+
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+ 
+.hidden {
+  opacity:0;
+}
+.console-container {
+ 
+  font-family:'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size:3.5em;
+  text-align:center;
+  height:70px;
+  width:100%;
+  display:block; 
+  color:white;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
+}
+.console-underscore {
+   display:inline-block;
+  position:relative;
+  top:0;
+  left:10px;
+}
+ 
+      
+</style>
+<script>
+  $(document).ready(function(){
+  
+              consoleText(['Shop 2 Home', 'Try 🛒 2 🏠 ', 'Stay Safe 😷'], 'text',['tomato','rebeccapurple','lightblue']);
+  
+              function consoleText(words, id, colors) {
+                if (colors === undefined) colors = ['#fff'];
+                var visible = true;
+                var con = document.getElementById('console');
+                var letterCount = 1;
+                var x = 1;
+                var waiting = false;
+                var target = document.getElementById(id)
+                target.setAttribute('style', 'color:' + colors[0])
+                window.setInterval(function() {
+  
+                  if (letterCount === 0 && waiting === false) {
+                    waiting = true;
+                    target.innerHTML = words[0].substring(0, letterCount)
+                    window.setTimeout(function() {
+                      var usedColor = colors.shift();
+                      colors.push(usedColor);
+                      var usedWord = words.shift();
+                      words.push(usedWord);
+                      x = 1;
+                      target.setAttribute('style', 'color:' + colors[0])
+                      letterCount += x;
+                      waiting = false;
+                    }, 1000)
+                  } else if (letterCount === words[0].length + 1 && waiting === false) {
+                    waiting = true;
+                    window.setTimeout(function() {
+                      x = -1;
+                      letterCount += x;
+                      waiting = false;
+                    }, 1000)
+                  } else if (waiting === false) {
+                    target.innerHTML = words[0].substring(0, letterCount)
+                    letterCount += x;
+                  }
+                }, 120)
+                window.setInterval(function() {
+                  if (visible === true) {
+                    con.className = 'console-underscore hidden'
+                    visible = false;
+  
+                  } else {
+                    con.className = 'console-underscore'
+  
+                    visible = true;
+                  }
+                }, 400)
+              }
+          });
+   </script>
+
+</head>
+<body>
+  <div class='console-container '><span style="font-weight: bold; text-shadow: unset;" id='text'></span><div class='console-underscore' id='console'>&#95;</div></div>
+   
+    <div class="container top">
+      
+        <ul  class="nav nav-tabs nav-pills row ">
+              <li class="nav-item col-6" >
+                  <a  href="#home" class="nav-link active " data-toggle="tab"> 
+                      <i class="fa fa-home"></i> Home
+                  </a>
+              </li>
+              <li class="nav-item col-6 ">
+                  <a id="orderTrackTab" href="#orderTrack" class="nav-link" data-toggle="tab"> 
+                      <i class="fa fa-truck"></i> Orders
+                  </a>
+              </li>
+              
+    
+          </ul>
+      <!-- <div style="overflow-x: scroll;">
+        <table  >
+          <tr >
+            <td style="padding-right: 18px;"><img class="cat_type" src="./img/IMG_20180805_121223.jpg"  width="50" height="50" ></td>
+            <td style="padding-right: 18px;"><img class="cat_type" src="./img/IMG_20180805_121223.jpg"  width="50" height="50" ></td>
+            <td style="padding-right: 18px;"><img class="cat_type" src="./img/IMG_20180805_121223.jpg"  width="50" height="50" ></td>
+            <td style="padding-right: 18px;"><img class="cat_type" src="./img/IMG_20180805_121223.jpg"  width="50" height="50" ></td>
+            <td style="padding-right: 18px;"><img class="cat_type" src="./img/IMG_20180805_121223.jpg"  width="50" height="50" ></td>
+            <td style="padding-right: 18px;"><img class="cat_type" src="./img/IMG_20180805_121223.jpg"  width="50" height="50" ></td>
+           
+          </tr>
+          <tr>
+            <td style="padding-right: 18px;">food</td>
+            <td style="padding-right: 18px;">vegetable</td>
+            <td style="padding-right: 18px;">meet</td>
+            <td style="padding-right: 18px;">glosari</td>
+            <td style="padding-right: 18px;"> gift</td>
+            
+          </tr>
+        </table>
+        
+      </div> -->
+        <marquee id="available" behavior="scroll" direction="left">Only Availabe in Ramanathapuram District  </marquee>
+       
+       
+        <div class="spinner" id="loading">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+        </div> 
+
+
+        <div  class="tab-content  "   >
+            <div class="tab-pane fade show active  " id="home" >
+              <div  class="container-fluid ">
+ 
+                <div class="row"  id="storediv" >
+                   
+                   
+                  <div class=" col-6"  onclick="getproduct()">
+                    <img src="./img/IMG_20180805_121223.jpg"  width="auto" height="120" >
+                  </div>
+                  <div class="  col-6"   onclick="getproduct()" style="align-items: center; ">
+                     
+                    
+                    <h6> Super stire </h6>
+                   <p >pamban</p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                  </div> 
+                     
+                 
+              </div>   
+              </div>
+
+                    
+
+             
+            </div>
+            <div class="tab-pane fade" id="orderTrack">
+              <table style="width: 100%;" cellpadding=6>
+                <tr>
+                  <th >id</th>
+                  <th>details</th>
+                  <th>status</th>
+                  <th>Date</th>
+                </tr>
+                <tbody id="user_order_history"> 
+                
+                    
+                      <tr>
+                        <td style="width: 10%;">1</td>
+                        <td style="width: 30%;"><button>view_order </button></td>
+                        <td style="width: 30%;">pending cancle by store</td>
+                        <td style="width: 30%;">24-09-2012 <br> 10:32am</td>
+                      </tr>
+
+                    </tbody>
+                   
+                </table>
+             
+
+            </div>
+            <div class="tab-pane fade" id="contact">
+                <h4 class="mt-2">Messages tab content</h4>
+                <p>Donec vel placerat  </p>
+                
+            </div>
+        </div>
+    </div>
+     
+     
+                
+    <!-- Include plugin after Swiper -->
+    <script>
+      //alert(localStorage.getItem("user_id"))
+     var temp_store=0;  
+    var Android_status = false;
+    var loc = setInterval(get_loc, 5000);
+    get_loc();
+    var tabName='none';
+    clickTab(tabName)
+    function clickTab(tabName){
+      switch(tabName){
+        case 'home':
+        $('#orderTrackTab').click();
+        break;  
+      }
+    }
+    function get_loc(){
+      if(Android_status){
+        var loc_detail={};
+         
+        var json = Android.location();
+        //alert("json---->"+json)
+         loc_detail = jQuery.parseJSON(json);
+       
+        if(loc_detail.log !='' && loc_detail.log != 'null' && loc_detail.log !=undefined &&
+          loc_detail.lag !='' && loc_detail.lag != 'null' && loc_detail.lag !=undefined  &&
+          loc_detail.country !='' && loc_detail.country != 'null' && loc_detail.country !=undefined  &&
+          loc_detail.token !='' && loc_detail.token != 'null' && loc_detail.token !=undefined  &&
+          loc_detail.area !='' && loc_detail.area != 'null' && loc_detail.area !=undefined  &&
+          loc_detail.pincode !='' && loc_detail.pincode != 'null' && loc_detail.pincode !=undefined  &&
+          loc_detail.address !='' && loc_detail.address != 'null' && loc_detail.address !=undefined  &&
+          loc_detail.locality !='' && loc_detail.locality != 'null' && loc_detail.locality !=undefined   
+          ){
+          
+          //alert(loc_detail.log+loc_detail.lag+loc_detail.country+loc_detail.area+loc_detail.pincode+loc_detail.locality+loc_detail.token);
+          updateLocation(loc_detail);
+          clearInterval(loc);
+        }else{
+          //alert('null')
+        }
+
+      }
+    
+    }
+ 
+   /*  function alert_msg(title,msg){
+      var status=false;
+          swal({
+            title: "detail",
+            text: "Sure to delete product",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",              
+              });
+              return true;
+            } else {
+              swal("Your imaginary file is safe!");
+              return false;
+            }
+          });
+    } */
+
+    function updateLocation(loc){
+      
+      $.ajax({   //like 
+          url : 'php/index.php', // php URL
+          type: "POST",
+          data: {user_id:localStorage.getItem("user_id"),log:loc.log,
+          lag:loc.lag,pincode:loc.pincode,address:loc.address,token:loc.token,
+          request:"user_update_location"}, 
+          dataType:"TEXT",
+          success: function(data)
+          {  
+
+            if(data=='sucess'){
+                alert("sfaffa")
+               
+              }else{
+                alert(data)
+              }
+          }
+        });
+    }
+    get_store();
+    setInterval(get_store, 10000);
+
+    function get_store(){
+
+        var status =true;
+
+            $.ajax({   //like 
+              url : 'php/index.php', // php URL
+              type: "POST",
+              data: {user_id:localStorage.getItem("user_id"),request:"get_store"}, 
+              dataType:"TEXT",
+              
+              success: function(data)
+              {
+              
+                if(data.length>4){
+                  var data = JSON.parse(data)
+                  if(temp_store!=data.length && temp_store!=0 ){
+                     //data change
+                     status=true;
+                  }else{
+                    status=false;
+                  }
+                  if(temp_store==0){
+                    status=true;
+                  }
+                  temp_store=data.length; 
+                  
+                  if(status){  
+                    $("#storediv").empty();
+                      for(i=0 ; i<data.length ;i++){
+                        // append some text
+                        
+                        var str = "", storeArray = [];
+
+                          storeArray.push("")
+            
+                            storeArray.push("<div  class='col-6'  onclick='getproduct("+data[i].store_id+","+data[i].distance+","+data[i].minimum_order+")' >")
+                            storeArray.push("<img src='php/"+data[i].store_image+"'  width='auto' height='120' >")
+                            storeArray.push(" </div>")
+                            storeArray.push(" <div class='col-6'  onclick='getproduct("+data[i].store_id+","+data[i].distance+","+data[i].minimum_order+")' style='align-items: center;'>")
+                                  
+                              storeArray.push(" <h6> "+data[i].store_name+" </h6>")
+                              storeArray.push(" <p >"+data[i].store_address+"</p>")
+                              storeArray.push("  <span class='fa fa-star checked'></span>")
+                              storeArray.push(" <span class='fa fa-star checked'></span>")
+                              storeArray.push(" <span class='fa fa-star checked'></span>")
+                              storeArray.push(" <span class='fa fa-star checked'></span>")
+                              storeArray.push("  <span class='fa fa-star'></span>")
+                              storeArray.push(" </div> ")
+
+                              $("#storediv").append(storeArray.join(""));
+                                
+                      }
+                    }
+               }else{
+                $("#storediv").empty();
+               temp_store=0;
+               }
+               $("#loading").hide();
+             }
+          });
+        }
+ 
+       //user home history  
+        $.ajax({   //like 
+          url : 'php/index.php', // php URL
+          type: "POST",
+          data: {user_id:localStorage.getItem("user_id"), 
+          request:"user_history"}, 
+          dataType:"TEXT",
+          timeout:3000,
+          success: function(data)
+          {  
+            if(data.length>4){
+                  var data = JSON.parse(data)
+                 
+                  $("#user_order_history").empty() ; 
+                  for(i=0 ; i<data.length ;i++){ 
+                     store_history_table = [];
+                     store_history_table.push("<tr  id = 'tr_history"+data[i].order_id+"'>"); 
+                      store_history_table.push("<td style='width: 10%;'>"+data[i].order_id+"</td>"); 
+                      store_history_table.push(" <td style='width: 30%;'>  <button class='btn btn-info' onclick='view_order("+data[i].order_details+","+data[i].order_id+")' > View</button>"); 
+                        store_history_table.push(" </td> "); 
+                        var his_status='pending';
+                        var his_btn='btn-secondary';
+                      if(data[i].store_pickup_status==1){ 
+                        his_status='Order pickup by store'
+                        his_btn='btn-warning';
+                      }
+                      if(data[i].order_cancel_by_store_status==1){                       
+                        his_status='Order cancel by store'
+                        his_btn='btn-danger';
+                      }
+                      if(data[i].order_cancel_by_store_status==1){                         
+                        his_status='Order cancel by store'
+                        his_btn='btn-danger';
+                      }
+                      if(data[i].delivery_pickup_status==1){ 
+                        his_btn='btn-warning';
+                        his_status='Order pickup by delivery boy'
+                      }
+                      if(data[i].order_cancel_by_devliery_status==1){ 
+                        his_btn='btn-danger';
+                        his_status='Order cancel by delivery boy'
+                      }
+                      if(data[i].deliveryed_status==1){ 
+                        his_btn='btn-danger';
+                        his_status='Order Completed'
+                      }
+                      
+                      store_history_table.push("<td style='width: 30%;'>  "+his_status+"</td>"); 
+                      store_history_table.push(" <td style='width: 30%;'>24-09-2012 <br> 10:32am</td>");
+                      store_history_table.push(" </tr> ");                                          
+                      $("#user_order_history").append(store_history_table.join(""));
+                  } 
+                }
+          }
+        }); 
+        
+        
+function getproduct(store_id,distance,minimum_order){
+  console.log("$$%#$#"+distance);
+ sessionStorage.setItem("store_product",store_id);
+ sessionStorage.setItem("store_distance",distance);
+ sessionStorage.setItem("minimum_order",minimum_order);
+ $("#loading").show();
+ window.location.href="index.html"; 
+}
+        
+function view_order(order_detail,order_id){
+        var order = JSON.stringify(order_detail);
+        order = JSON.parse(order); 
+        order_table = []; 
+          order_table.push("<div ><table border = 5px     style='width: 100%; height: auto; display: block; overflow-y: auto;'>");
+          order_table.push("<tr>") ;  
+          order_table.push("  <th>Pro_id</th> <th>Qty</th> <th>Name</th> <th>Price</th>") ;  
+          order_table.push("</tr>") ; 
+        Object.entries(order).forEach(item => {        
+          order_table.push("<tr>") ;  
+           order_table.push("<td>"+item[0]+" </td>") ; 
+           order_table.push("<td>"+item[1].quantity+" </td>") ;  
+           order_table.push("<td><textarea  style='border: none'  readonly rows = '2'  >"+item[1].name+" </textarea> </td>") ;   
+           order_table.push("<td>"+item[1].total+" </td>") ;  
+          console.log("dhdhd"+item[1].total)
+        }) 
+        order_table.push("</table> </div>") ; 
+        Swal.fire({
+            title: '<strong> Orders</strong>',
+           
+            html:order_table.join(""),
+            customClass: 'swal-height',
+            
+          })
+
+      }  
+ 
+
+    </script>
+  
+   
+
+     
+</body>
+</html>
