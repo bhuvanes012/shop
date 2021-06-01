@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>Store otp</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap_V_4.5.2.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/swiper.min.css">
+  <script src="js/jquery-3.4.1.js"></script>
+  <script src="js/bootstrap_V_4.5.2.js"></script>
+  <script src="js/swiper.min.js"></script>
+   
+  </head>
+  <style>
+     html,body  {
+      background: linear-gradient(to bottom, rgb(114, 190, 241) 0%,rgb(160, 177, 224) 50%,#da4baa 50%,rgb(160, 177, 224) 50%,rgb(216, 137, 199) 100%);
+
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0; 
+        align-items: center;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+         
+      }
+     #main{
+       width: 100%;
+      align-items: center;
+      justify-content: center;
+      
+     }
+     #sign-in-button{
+       margin-left: 40%;
+       margin-top: 7%;
+     }
+     #confirm-code{
+       margin-left: 10%;
+       margin-top: 7%;
+     }
+     #resend-code{
+       margin-left: 10%;
+       margin-top: 7%;
+     }
+
+
+  </style>
+  <body>
+    <!-- Add two inputs for "phoneNumber" and "code" -->
+    <div id="main">
+        <input type="tel" placeholder="Enter 10 digit number" class="form-control" id="phoneNumber">
+        <input type="tel" placeholder="Enter OTP" class="form-control" id="code">
+        <div id="recaptcha-container"></div>
+
+        <!-- Add two buttons to submit the inputs step1 -->
+        <button id="sign-in-button" class="btn btn-primary" onclick="submitPhoneNumberAuth()">
+          SUBMIT
+        </button>
+        <button id="confirm-code" class="btn btn-primary" onclick="submitPhoneNumberAuthCode()">
+          ENTER CODE
+        </button>
+        <button id="resend-code" class="btn btn-primary" onclick="submitPhoneNumberAuth()">
+          Resend Otp
+        </button>
+
+        <!-- Add a container for reCaptcha -->
+       
+     </div>
+    <!-- Add the latest firebase dependecies from CDN -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script>
+     indexedDB.deleteDatabase('firebaseLocalStorageDb');
+     if(localStorage.getItem("phone")===null){
+     
+         
+     }else{
+         window.location.href="store.html"; 
+     }
+      var phoneNumber ='';
+      // Paste the config your copied earlier
+      $("#code").hide();
+      $("#confirm-code").hide();
+      $("#resend-code").hide();
+     
+      var firebaseConfig = {
+        apiKey: "AIzaSyDyCBq2qTSi5U2oEAv4LTYLUq0IEPbDjl4",
+    authDomain: "shopping-1bfff.firebaseapp.com",
+    projectId: "shopping-1bfff",
+    storageBucket: "shopping-1bfff.appspot.com",
+    messagingSenderId: "890873031832",
+    appId: "1:890873031832:web:6349f72b791d491775b4ed",
+    measurementId: "G-FWXN3NWZ3S"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      // Create a Recaptcha verifier instance globally
+      // Calls submitPhoneNumberAuth() when the captcha is verified
+      window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+        "recaptcha-container",
+        {
+          size: "normal",
+          callback: function(response) {
+            console.log(response);
+            submitPhoneNumberAuth();
+          }
+        }
+      );
+
+      // This function runs when the 'sign-in-button' is clicked
+      // Takes the value from the 'phoneNumber' input and sends SMS to that phone number
+      function submitPhoneNumberAuth() {
+          phoneNumber ="+91"+document.getElementById("phoneNumber").value;
+        var appVerifier = window.recaptchaVerifier;
+       
+        console.log(appVerifier.f);
+        /// console.log("recap"+JSON.parse(appVerifier));
+        console.log(phoneNumber.length);
+        if(appVerifier.f !=null){
+          $("#code").show();
+          $("#confirm-code").show();
+          $("#resend-code").show();
+          $("#recaptcha-container").hide();
+          $("#sign-in-button").hide();
+          
+        }
+        if(phoneNumber.length==13 ){
+          $("#phoneNumber").hide();
+        }else{
+          alert("enter 10 digit mobile number")
+        }
+
+        if(phoneNumber.length==13){
+           
+         
+          firebase
+          .auth()
+          .signInWithPhoneNumber(phoneNumber, appVerifier)
+          .then(function(confirmationResult) {
+            window.confirmationResult = confirmationResult;
+          })
+          .catch(function(error) {
+            console.log(error);
+           // submitPhoneNumberAuth();
+          });
+        }       
+        
+      }
+
+      // This function runs when the 'confirm-code' button is clicked
+      // Takes the value from the 'code' input and submits the code to verify the phone number
+      // Return a user object if the authentication was successful, and auth is complete
+      function submitPhoneNumberAuthCode() {
+        var code = document.getElementById("code").value;
+        confirmationResult
+          .confirm(code)
+          .then(function(result) {
+            var user = result.user;
+            console.log(user);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
+
+      //This function runs everytime the auth state changes. Use to verify if the user is logged in
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          console.log(user);
+          console.log(phoneNumber+"USER LOGGED IN--"+user);
+          if(phoneNumber.length==13 ){
+            $.ajax({   //like 
+              url : 'php/index.php', // php URL
+              type: "POST",
+              data: {phone:"+91"+document.getElementById("phoneNumber").value,request:"store_signup"}, 
+              dataType:"TEXT",
+              success: function(data)
+              {
+                console.log(data);
+                if(data.length >5){
+                    var detail = JSON.parse(data);
+                    for(i=0;i<detail.length;i++){
+                      localStorage.setItem("store_id",detail[i].store_id);
+                      localStorage.setItem("store_name",detail[i].store_name);
+                      localStorage.setItem("phone",detail[i].store_phone);
+                      localStorage.setItem("store_address",detail[i].store_address);
+                      localStorage.setItem("store_location",detail[i].store_location);
+                    }
+                    window.location.href="store.html"; 
+                }
+                
+              }
+           });
+          }
+          
+        } else {
+          // No user is signed in.
+          console.log(user);
+          console.log("USER NOT LOGGED IN--"+user);
+        }
+      });
+    </script>
+  </body>
+</html>
