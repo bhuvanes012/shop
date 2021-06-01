@@ -247,10 +247,10 @@
                 
                 }) 
                 if(sessionStorage.getItem("store_distance")===null){
-
+                  
                 }else{
-                  var del_cha = sessionStorage.getItem("store_distance")*4;
-                  if(del_cha>15){
+                  var del_cha = sessionStorage.getItem("store_distance")*4;                
+                  if(del_cha<15){
                     tot = tot+15;
                   }else{
                     tot = tot+(sessionStorage.getItem("store_distance")*4)
