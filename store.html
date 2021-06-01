@@ -326,7 +326,7 @@
                 </a>
             </li>
               <li class="nav-item col-6 ">
-                  <a href="#product" class="nav-link" data-toggle="tab"> 
+                  <a id="productTab" href="#product" class="nav-link" data-toggle="tab"> 
                       <i class="fa fa-truck"></i> Product
                   </a>
               </li>
@@ -979,6 +979,7 @@ function product_details(){
           
             if(data.length>4){
                 var data = JSON.parse(data)
+                $("#storediv").empty();
                 for(i=0 ; i<data.length ;i++){
                     // append some text
                     var str = "", storeArray = [];
@@ -1000,7 +1001,7 @@ function product_details(){
                     }                   
                     storeArray.push(" </div> <br><br><br><hr>"); 
                     var s = storeArray.join("")
-                    $("#storediv").empty();
+                   
                     $("#storediv").append(s);
                     if(data[i].status==0){
                       $(".div"+data[i].product_id).css('background-color', '#ffcccb');
@@ -1177,6 +1178,7 @@ function product_details(){
      //uploade details
      //localStorage.setItem("store_id",'1');
      $("#sub").click(function(){
+      $(window).scrollTop(0);
        var id = localStorage.getItem("store_id");
        var fd = new FormData();
              var img1 = $('#img1')[0].files[0];
@@ -1199,20 +1201,21 @@ function product_details(){
              }
      
              if(count>0){
-                     
+              $("#loadcircle").show();
+                   
                      $.ajax({
                          url: 'php/fileupload.php',
                          type: 'post',
                          data: fd,
                          contentType: false,
                          processData: false,
+                         timeout: 300000, 
                          success: function(data){
-                           console.log(data)
-                             if(data.length>2){
-                               alert("sucess")
-                               $("#spin").hide();
-                              // window.location.href="home_page.html.html";
+                             $("#spin").hide(); 
+                             if(data == 'sucess'){
+                              
                              }
+                             clickTab("product");
                          },
                      });
              } else{
@@ -1220,6 +1223,17 @@ function product_details(){
              }      
         
      })
+
+      
+     function clickTab(tabName){
+      switch(tabName){
+        case 'product':
+        $('#productTab').click();
+        product_details();
+        break;  
+      }
+    }
+
      function readURL(input,type) {
          
          console.log(input)
@@ -1239,8 +1253,8 @@ function product_details(){
                 $('#show_img3').attr('src', e.target.result);
                }
               
-                  console.log(typeof($("#img")[0].naturalWidth));
-               console.log($("#img").width())
+                 // console.log(typeof($("#img")[0].naturalWidth));
+                // console.log($("#img").width())
                var img = document.getElementById('img');
                    //img.style.transform = 'rotate(180deg)';
                    /* if($("#img")[0].naturalHeight> $("#img")[0].naturalWidth){
