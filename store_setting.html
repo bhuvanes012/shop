@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap_V_4.5.2.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/swiper.min.css">
+  <script src="js/jquery-3.4.1.js"></script>
+  <script src="js/bootstrap_V_4.5.2.js"></script>
+  <script src="js/swiper.min.js"></script> 
+  <script>
+      $(document).ready(function(){
+        
+      });
+  </script>
+<style>
+    html,body{
+        margin-bottom: 10%;
+        height: 100%;
+    }
+    img{
+        
+        background-size: cover;
+         
+        margin-bottom: 2%;
+        padding-bottom: 2%;
+        border-radius: 20%;
+         
+      }
+      h3{
+        text-align: start;
+      }
+      #home{
+        padding-bottom: 17%;
+      }
+       
+       
+      #addButton{
+          margin-bottom: 1%;
+           
+      }
+       
+      .price{
+          font-size:xx-large;
+      }
+      .regular-price{
+          font-size:medium;
+          margin-left: 2%;  
+      }
+      .percent{
+          margin-left: 4%;
+      }
+      #productName{
+          font-size: x-large;
+      }
+      .swiper-wrapper{
+        padding-bottom: 30px;
+      }
+      .headertag {
+       position: fixed;
+     }   
+     .checked {
+        color: orange;
+        }
+    button{
+        margin-left: 3%;
+    }
+     
+      
+</style>
+ 
+ 
+</head>
+<body>
+                <label> Store Name:</label>
+                <input type="text" placeholder="Enter Store Name" class="form-control" id="store_name">
+                <label> Mobile :</label>
+                <input type="number" placeholder="Enter Mobile number" class="form-control" id="store_phone">
+                <label> Range (KM):</label>
+                <input type="number" placeholder="Enter Range in KM" class="form-control" id="store_range">
+                <label> Minimum Order(RS):</label>
+                <input type="number" placeholder="Enter minimum order in RS" class="form-control" id="minimum_order">
+                <!-- <label> Delivery Type:</label>
+                <select name="delivert_type" id="del_type">
+                  <option value="self">self delivery</option>
+                  <option value="s2h">s2h delivery</option>
+                </select><br> -->
+
+                <label> Store Image</label>
+                <img  id="show_img1" width="auto" height="120" >
+                <input type="file"  name="img" id="img1" onchange="readURL(this,1)" accept="image/x-png,image/gif,image/jpeg" /><br>
+                <br>
+                <div id="spin" class="spinner-border text-danger" role="status">
+                </div>
+    <button id="sub" class="btn btn-success">Submit</button>
+
+    <script>
+ 
+      $("#spin").hide();  
+     var count=0;
+     //uploade details
+     //localStorage.setItem("store_id",'1');
+     $("#sub").click(function(){
+       var id = localStorage.getItem("store_id");
+       var fd = new FormData();
+             var img1 = $('#img1')[0].files[0];            
+             fd.append('img1',img1);           
+             fd.append('id',id);
+             fd.append('name',$("#store_name").val());
+             fd.append('phone',$("#store_phone").val());
+             fd.append('range',$("#store_range").val());
+             fd.append('minimum_order',$("#minimum_order").val()); 
+             if($("#store_name").val().length==0){
+               count=0;
+               alert("enter name");
+             }
+             if($("#store_phone").val().length==0 ||  $("#store_phone").val().length!=10 ){
+               count=0;
+               alert("plz enter 10 digit mobile phone number");
+             }
+             if($("#store_range").val().length==0){
+               count=0;
+               alert("enter range");
+             }
+             if($("#minimum_order").val().length==0){
+               count=0;
+               alert("Enter minimum order");
+             }
+     
+             if(count>0){
+                     
+                     $.ajax({
+                         url: 'php/storeSetting.php',
+                         type: 'post',
+                         data: fd,
+                         contentType: false,
+                         processData: false,
+                         success: function(data){
+                           //console.log(data)
+                             if(data ="sucess"){
+                               alert("sucess")
+                               $("#spin").hide();
+                              // window.location.href="home_page.html.html";
+                             }
+                         },
+                     });
+             } else{
+               alert("plz check");
+             }      
+        
+     })
+     function readURL(input,type) {
+         
+         console.log(input)
+         if (input.files && input.files[0]) {
+             var reader = new FileReader();
+     
+             reader.onload = function (e) {
+                
+               ++count;
+               if(type==1){
+                $('#show_img1').attr('src', e.target.result);
+               }
+               
+              
+                 // console.log(typeof($("#img")[0].naturalWidth));
+              // console.log($("#img").width())
+               var img = document.getElementById('img');
+                   //img.style.transform = 'rotate(180deg)';
+                   /* if($("#img")[0].naturalHeight> $("#img")[0].naturalWidth){
+                     alert("change")
+                     var img = document.getElementById('img');
+                   img.style.transform = 'rotate(90deg)';
+                   
+                   } */
+                 if(2>1){
+                   
+               }
+                 
+             }
+     
+             reader.readAsDataURL(input.files[0]);
+         }
+     
+     
+         
+     }
+       
+    </script>   
+     
+</body>
+</html>

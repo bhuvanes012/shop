@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap_V_4.5.2.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/swiper.min.css">
+  <script src="js/jquery-3.4.1.js"></script>
+  <script src="js/bootstrap_V_4.5.2.js"></script>
+  <script src="js/swiper.min.js"></script> 
+  <script>
+      $(document).ready(function(){
+        
+      });
+  </script>
+<style>
+    html,body{
+        margin-bottom: 10%;
+        height: 100%;
+    }
+    img{
+        
+        background-size: cover;
+         
+        margin-bottom: 2%;
+        padding-bottom: 2%;
+        border-radius: 20%;
+         
+      }
+      h3{
+        text-align: start;
+      }
+      #home{
+        padding-bottom: 17%;
+      }
+       
+       
+      #addButton{
+          margin-bottom: 1%;
+           
+      }
+       
+      .price{
+          font-size:xx-large;
+      }
+      .regular-price{
+          font-size:medium;
+          margin-left: 2%;  
+      }
+      .percent{
+          margin-left: 4%;
+      }
+      #productName{
+          font-size: x-large;
+      }
+      .swiper-wrapper{
+        padding-bottom: 30px;
+      }
+      .headertag {
+       position: fixed;
+     }   
+     .checked {
+        color: orange;
+        }
+    button{
+        margin-left: 3%;
+    }
+     
+      
+</style>
+ 
+<script>
+
+$.ajax({   //like 
+              url : 'php/index.php', // php URL
+              type: "POST",
+              data: {product_id:sessionStorage.getItem("product_id"),store_id: sessionStorage.getItem("store_id"),request:"get_edit_product"}, 
+              dataType:"TEXT",
+              success: function(data)
+              {
+                if(data.length>4){
+                    var data = JSON.parse(data)
+                    for(i=0 ; i<data.length ;i++){
+                      //console.log(data[i].image1);
+                      $("#prod_name").val(data[i].product_name);
+                      $("#prod_price").val(data[i].price);
+                      $("#show_img1").attr('src','php/'+data[i].image1);
+                      $("#show_img2").attr('src','php/'+data[i].image2);
+                      $("#show_img3").attr('src','php/'+data[i].image3);
+                      $("#img1").val('php/'+data[i].image1)
+                    }
+                     
+                }
+              }
+              
+           });
+
+</script>
+</head>
+<body>
+    <label> product Name:</label>
+                <input type="text" placeholder="Enter product Name" class="form-control" id="prod_name">
+                <label> product Price:</label>
+                <input type="number" placeholder="Enter Price" class="form-control" id="prod_price">
+                <label> Image 1</label>
+                <img  id="show_img1" width="auto" height="120" >
+                <input type="file"  name="img" id="img1" onchange="readURL(this,1)" accept="image/x-png,image/gif,image/jpeg" /><br>
+                <label> Image 2</label>
+                <img id="show_img2" width="auto" height="120" >
+                <input type="file"  name="img" id="img2" onchange="readURL(this,2)" accept="image/x-png,image/gif,image/jpeg" /><br>
+                <label> Image 3</label>
+                <img id="show_img3" width="auto" height="120" >
+                <input type="file"  name="img" id="img3" onchange="readURL(this,3)" accept="image/x-png,image/gif,image/jpeg" /><br>
+                <div id="spin" class="spinner-border text-danger" role="status">
+                </div>
+    <button id="sub" class="btn">Submit</button>
+
+    <script>
+ 
+      $("#spin").hide();  
+     var count=0;
+     //uploade details
+     //localStorage.setItem("store_id",'1');
+     $("#sub").click(function(){
+       var id = localStorage.getItem("store_id");
+       var fd = new FormData();
+             var img1 = $('#img1')[0].files[0];
+             var img2 = $('#img2')[0].files[0];
+             var img3 = $('#img3')[0].files[0];
+             fd.append('img1',img1);
+             fd.append('img2',img2);
+             fd.append('img3',img3);
+             fd.append('id',id);
+             fd.append('name',$("#prod_name").val());
+             fd.append('price',$("#prod_price").val());
+             fd.append('product_id',sessionStorage.getItem("product_id"));
+             fd.append('type','update');
+             if($("#prod_name").val().length==0){
+               count=0;
+               alert("enter name");
+             }
+             if($("#prod_price").val().length==0){
+               count=0;
+               alert("enter price");
+             }
+     
+             if(count>0){
+                     
+                     $.ajax({
+                         url: 'php/fileupload.php',
+                         type: 'post',
+                         data: fd,
+                         contentType: false,
+                         processData: false,
+                         success: function(data){
+                           //console.log(data)
+                             if(data.length>2){
+                               alert("sucess")
+                               $("#spin").hide();
+                              // window.location.href="home_page.html.html";
+                             }
+                         },
+                     });
+             } else{
+               alert("plz check");
+             }      
+        
+     })
+     function readURL(input,type) {
+         
+         console.log(input)
+         if (input.files && input.files[0]) {
+             var reader = new FileReader();
+     
+             reader.onload = function (e) {
+                
+               ++count;
+               if(type==1){
+                $('#show_img1').attr('src', e.target.result);
+               }
+               if(type==2){
+                $('#show_img2').attr('src', e.target.result);
+               }
+               if(type==3){
+                $('#show_img3').attr('src', e.target.result);
+               }
+              
+                 // console.log(typeof($("#img")[0].naturalWidth));
+              // console.log($("#img").width())
+               var img = document.getElementById('img');
+                   //img.style.transform = 'rotate(180deg)';
+                   /* if($("#img")[0].naturalHeight> $("#img")[0].naturalWidth){
+                     alert("change")
+                     var img = document.getElementById('img');
+                   img.style.transform = 'rotate(90deg)';
+                   
+                   } */
+                 if(2>1){
+                   
+               }
+                 
+             }
+     
+             reader.readAsDataURL(input.files[0]);
+         }
+     
+     
+         
+     }
+       
+    </script>   
+     
+</body>
+</html>
