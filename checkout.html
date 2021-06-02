@@ -190,11 +190,6 @@
                     store_id= item[1].store_id;
                
         }) 
-
- 
-         
-
-    
         //Add value
         function add(store_id,id,price){
             var currentvalue = $("#quantity"+id).val();
@@ -204,24 +199,24 @@
         }
         //minus value
         function minus(store_id,id,price){
-              var currentvalue = $("#quantity"+id).val();
+          var currentvalue = $("#quantity"+id).val();
+             if(parseInt(currentvalue)==1){  // remove the add,minus element and show the addButton
+                $(".pro"+id).remove();
+                delete order[id];
+                localStorage.setItem("order", JSON.stringify(order));
+                //recount the total after remove product
+                readTotal();
+                console.log(order);
+                console.log(order.length);
+              }            
               if(parseInt(currentvalue)>1){
                 $("#quantity"+id).val(parseInt(currentvalue)-1);
                 addProductDetail("","",store_id,id,price)
               }
-              if(parseInt(currentvalue)==1){  // remove the add,minus element and show the addButton
-                $(".pro"+id).remove();
-                delete order[id];
-                localStorage.setItem("order", JSON.stringify(order));
-                console.log(order);
-                console.log(order.length);
-              }
+             
         }
         function addProductDetail(name,img,store_id,id ,price){
-          var orderDetail = new Object();
-          
-         
-         
+          var orderDetail = new Object();         
                orderDetail.quantity = $("#quantity"+id).val();
                orderDetail.price =price;
                orderDetail.total =($("#quantity"+id).val()*price); 
@@ -255,8 +250,7 @@
                   }else{
                     tot = tot+(sessionStorage.getItem("store_distance")*4)
                   }
-                }
-               
+                }              
                console.log("Tot----->"+tot);  
                console.log((sessionStorage.getItem("store_distance")*4));
                $("#total").text(Math.round(tot));
@@ -272,7 +266,9 @@
                   total += item[1].total                   
                  }
           }) 
-           console.log("total--->>"+total); 
+           if(total==0){
+            window.location.href="index.html"; 
+           }
            if(sessionStorage.getItem("store_distance")===null){
 
             }else{
