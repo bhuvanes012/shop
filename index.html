@@ -17,8 +17,8 @@
       });
   </script>
 <style>
-  img.loading {
-    background: transparent url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fexplore%2Floading&psig=AOvVaw1wLuLaGH5ks9cbLwV-N_t5&ust=1622691882589000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCPDrq76E-PACFQAAAAAdAAAAABAO") no-repeat scroll center center;
+  img{
+  background: transparent url('https://images.app.goo.gl/DPC6LtFUM7stK9qL9') center no-repeat;
   }
     html,body{
         margin-bottom: 10%;
@@ -451,17 +451,17 @@
                             
                             if(data[i].image1 != ""){
                               prodArray.push("<div class='swiper-slide'>"); 
-                                prodArray.push("<img src='php/"+data[i].image1+" '  width='350' height='350'>");
+                                prodArray.push("<img src='php/"+data[i].image1+" '  width='350' height='350' class='swiper-lazy'>");
                               prodArray.push("</div>");
                             }
                             if(data[i].image2 != ""){
                               prodArray.push("<div class='swiper-slide'>");
-                                prodArray.push("<img   src='php/"+data[i].image2+" '  width='350' height='350'>");
+                                prodArray.push("<img   src='php/"+data[i].image2+" '  width='350' height='350'  class='swiper-lazy'>");
                                 prodArray.push("</div>");
                             }
                             if(data[i].image3 != ""){
                                 prodArray.push("<div class='swiper-slide'>"); 
-                                  prodArray.push("<img   src='php/"+data[i].image3+" '  width='350' height='350'>");
+                                  prodArray.push("<img   src='php/"+data[i].image3+" '  width='350' height='350' class='swiper-lazy'>");
                                   prodArray.push("</div>");  
                             }                        
                               prodArray.push("</div> ");
