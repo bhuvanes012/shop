@@ -576,7 +576,7 @@ function view_order(order_detail,order_id){
           order_table.push("<tr>") ;  
            order_table.push("<td>"+item[0]+" </td>") ; 
            order_table.push("<td>"+item[1].quantity+" </td>") ;  
-           order_table.push("<td><textarea  style='border: none'  readonly rows = '2'  >"+item[1].name+" </textarea> </td>") ;   
+           order_table.push("<td><textarea  style='border: none'  readonly rows = '2'  >"+item[1].name.split("~").join(" ")+" </textarea> </td>") ;   
            order_table.push("<td>"+item[1].total+" </td>") ;  
           console.log("dhdhd"+item[1].total)
         }) 
