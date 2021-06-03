@@ -6,7 +6,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 class DB_CONN{
     public $conn;
-   function DB_CONN(){
+    function DB_CONN(){
         $servername = "localhost";
         $username = "u845810931_bhuvanes114";
         $password = "Bhuvanes@7829";
