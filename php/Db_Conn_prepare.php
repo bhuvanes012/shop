@@ -7,10 +7,10 @@ error_reporting(E_ALL);
 class DB_CONN{
     public $conn;
     function DB_CONN(){
-        $servername = "127.0.0.1:3309";
-        $username = "root";
-        $password = "";
-        $db = "shop";
+        $servername = "localhost";
+        $username = "u845810931_bhuvanes114";
+        $password = "Bhuvanes@7829";
+        $db = "u845810931_shop";
         // Create connection
         $this->conn = mysqli_connect($servername, $username, $password,$db);
         
