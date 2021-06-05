@@ -519,7 +519,7 @@
                      store_history_table = [];
                      store_history_table.push("<tr  id = 'tr_history"+data[i].order_id+"'>"); 
                       store_history_table.push("<td style='width: 10%;'>"+data[i].order_id+"</td>"); 
-                      store_history_table.push(" <td style='width: 30%;'>  <button class='btn btn-info' onclick='view_order("+data[i].order_details+","+data[i].order_id+")' > View</button>"); 
+                      store_history_table.push(" <td style='width: 30%;'>  <button class='btn btn-info' onclick='view_order("+data[i].order_details+","+data[i].order_id+","+data[i].delivery_charge+")' > View</button>"); 
                         store_history_table.push(" </td> "); 
                         var his_status='pending';
                         var his_btn='btn-secondary';
@@ -567,32 +567,44 @@ function getproduct(store_id,distance,minimum_order){
  window.location.href="index.html"; 
 }
         
-function view_order(order_detail,order_id){
-        var order = JSON.stringify(order_detail);
-        order = JSON.parse(order); 
-        order_table = []; 
-          order_table.push("<div ><table border = 5px     style='width: 100%; height: auto; display: block; overflow-y: auto;'>");
-          order_table.push("<tr>") ;  
-          order_table.push("  <th>Pro_id</th> <th>Qty</th> <th>Name</th> <th>Price</th>") ;  
-          order_table.push("</tr>") ; 
-        Object.entries(order).forEach(item => {        
-          order_table.push("<tr>") ;  
-           order_table.push("<td>"+item[0]+" </td>") ; 
-           order_table.push("<td>"+item[1].quantity+" </td>") ;  
-           order_table.push("<td><textarea  style='border: none'  readonly rows = '2'  >"+item[1].name.split("~").join(" ")+" </textarea> </td>") ;   
-           order_table.push("<td>"+item[1].total+" </td>") ;  
-          console.log("dhdhd"+item[1].total)
-        }) 
-        order_table.push("</table> </div>") ; 
-        Swal.fire({
-            title: '<strong> Orders</strong>',
-           
-            html:order_table.join(""),
-            customClass: 'swal-height',
-            
-          })
+function view_order(order_detail,order_id,delivery_charge ){
+  
+  var order = JSON.stringify(order_detail);
+  var tot = 0;
+  order = JSON.parse(order); 
+  order_table = []; 
+    order_table.push("<div ><table border = 5px     style='width: 50%; height: auto; display: block; overflow-y: auto;'>");
+    order_table.push("<tr>") ;  
+    order_table.push("  <th>Pro_id</th> <th>Qty</th> <th>Name</th> <th>Price</th>") ;  
+    order_table.push("</tr>") ; 
+  Object.entries(order).forEach(item => {        
+    order_table.push("<tr>") ;  
+     order_table.push("<td>"+item[0]+" </td>") ; 
+     order_table.push("<td>"+item[1].quantity+" </td>") ;  
+     order_table.push("<td><textarea  style='border: none'  readonly rows = '2'  >"+item[1].name.split("~").join(" ")+" </textarea> </td>") ;   
+     order_table.push("<td>"+item[1].total+" </td>") ;  
+    console.log("dhdhd"+item[1].total)
+    tot = tot+parseInt(item[1].total);
+  })  
+  order_table.push("<tr> <td> <b>Total :<b>   </td>") ; 
+  order_table.push("<td> "+tot+" </td>  ") ; 
+  order_table.push("</tr>") ; 
+  order_table.push("<tr> <td> <b>delivery charge :<b>   </td>") ; 
+  order_table.push("<td> "+ delivery_charge +"  </td> </tr> ") ;         
+  order_table.push("<tr> <td> <b>Net Total :<b>   </td>") ; 
+  order_table.push("<td> "+(parseInt(tot)+parseInt(delivery_charge))+"  </td> </tr>") ; 
 
-      }  
+  order_table.push("</table> </div>") ;  
+  Swal.fire({
+      title: '<strong> Orders</strong>',
+     
+      html:order_table.join(""),
+      customClass: 'swal-height',
+      
+    })
+
+}
+
  
 
     </script>
