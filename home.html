@@ -293,7 +293,7 @@
  
                 <div class="row"  id="storediv" >
                    
-                   
+                  
                   <!-- <div class=" col-6"  onclick="getproduct()">
                     <img src="./img/IMG_20180805_121223.jpg"  width="auto" height="120" >
                   </div>
@@ -493,8 +493,14 @@
                       }
                     }
                }else{
-                $("#storediv").empty();
-               temp_store=0;
+                  $("#storediv").empty();
+                var storeArray = [];
+                storeArray.push(" <div>");
+                storeArray.push("  <b>All the store are closed now  </b>");
+                storeArray.push(" <br> <h3>Please try some time later<h3> ");
+                storeArray.push(" </div>");
+                $("#storediv").append(storeArray.join(""));
+                temp_store=0;
                }
                $("#loading").hide();
              }

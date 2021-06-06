@@ -57,7 +57,7 @@ function update_product_status( $store_id,$product_id,$status){
 function get_store($user_id){
     $query = " 
     SELECT sd.*,ud.user_id,ud.lag,ud.log ,( 3959 * acos( cos( radians(ud.lag) ) * cos( radians(sd.lag) ) * cos( radians( sd.log ) - radians(ud.log) ) + sin( radians(ud.lag) ) * sin( radians( sd.lag ) ) ) ) as distance FROM store_details sd left outer join user_details ud  On ud.user_id=$user_id
-    where ( 3959 * acos( cos( radians(ud.lag) ) * cos( radians(sd.lag) ) * cos( radians( sd.log ) - radians(ud.log) ) + sin( radians(ud.lag) ) * sin( radians( sd.lag ) ) ) ) < sd.store_range";
+    where store_status <> 0 and ( 3959 * acos( cos( radians(ud.lag) ) * cos( radians(sd.lag) ) * cos( radians( sd.log ) - radians(ud.log) ) + sin( radians(ud.lag) ) * sin( radians( sd.lag ) ) ) ) < sd.store_range";
     $sql = $this->connection->get_store($query);
 }
 function place_order( $store_id,$user_id,$phone,$name, $address,$zip,$order_details,$delivery_charge){
