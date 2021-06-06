@@ -502,7 +502,7 @@
      <script>
      $("#loadcircle").hide();
      var Android_status = true;
-   
+    
     function get_loc(){
       if(Android_status){
         var loc_detail={};
@@ -522,12 +522,12 @@
           ){
             localStorage.setItem("lag",loc_detail.lag) ;
             localStorage.setItem("log",loc_detail.log) ;
-          //alert(loc_detail.log+loc_detail.lag+loc_detail.country+loc_detail.area+loc_detail.pincode+loc_detail.locality+loc_detail.token);
-          //alert(json);
+          alert(loc_detail.log+loc_detail.lag+loc_detail.country+loc_detail.area+loc_detail.pincode+loc_detail.locality+loc_detail.token);
+          alert(json);
           updateLocation(loc_detail);
           clearInterval(loc);
         }else{
-          //alert('null')
+          alert("eklsee  "+loc_detail)
         }
 
       }
@@ -536,10 +536,29 @@
  //store setting    
 function setting(){
   var loc = setInterval(get_loc, 5000);
-    get_loc();
+  get_loc();
   window.location.href="store_setting.html"; 
 }
-  
+    function updateLocation(loc){
+      localStorage.setItem("store_id",2);     
+      $.ajax({   //like 
+          url : 'php/index.php', // php URL
+          type: "POST",
+          data: {store_id:localStorage.getItem("store_id"),log:loc.log,
+          lag:loc.lag,pincode:loc.pincode,address:loc.address,token:loc.token,
+          request:"store_update_location"}, 
+          dataType:"TEXT",
+          success: function(data)
+          {       
+            if(data=='sucess'){
+                alert("sfaffa")
+               
+              }else{
+                alert(data)
+              }
+          }
+        });
+    }
 
  var temp_home=0;  //home_order_details() used in this function
  var temp_order=0;         
