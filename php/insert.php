@@ -117,6 +117,12 @@ function self_delivery_completed($order_id){
     $query = " update order_details set deliveryed_status=1,delivery_completed_time=CURRENT_TIMESTAMP where order_id= $order_id  ";
     $sql = $this->connection->update_store_status($query);
 }
+function store_home_status($store_id){
+    $query = " select store_status from store_details WHERE store_id= $store_id ";
+    $sql = $this->connection->store_home_status($query);
+}
+
+
 
 }
 

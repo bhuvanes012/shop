@@ -110,8 +110,11 @@ switch ($reqest) {
         case "self_delivery_completed":
             $order_id =$_POST['order_id'];                       
             $insert->self_delivery_completed($order_id); // Using Object to Call The function
-            break;      
-            
+            break;        
+        case "store_home_status":
+            $store_id =$_POST['store_id'];                        
+            $insert->store_home_status($store_id); // Using Object to Call The function
+            break;   
              
  }
 

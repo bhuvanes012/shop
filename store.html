@@ -513,9 +513,32 @@ function setting(){
  var temp_order=0;         
  home_order_details();
  store_order_details(); 
- product_details()
+ product_details();
  setInterval(home_order_details, 50000);
  store_history();
+ store_status();
+ function store_status(){
+  $.ajax({   //get the home page order details
+              url : 'php/index.php', // php URL
+              type: "POST",
+              data: {store_id:localStorage.getItem("store_id"),request:"store_home_status"}, 
+              dataType:"TEXT",
+              success: function(data)
+              { 
+                var data = JSON.parse(data)
+                if(data[0].store_status==0){
+                  if($("#toggle").prop('checked')){
+                    
+                  }
+                  
+                  $("#home").css('background-color', '#ffcccb');
+                }else{
+                   
+                }
+                
+              }
+            })
+ }
 function home_order_details(){
   //Android.service_web("start");
   $("#loadcircle").show();
@@ -529,6 +552,13 @@ function home_order_details(){
               { 
                 if(data.length>4){
                   var data = JSON.parse(data)
+                 /* //verify check store is offline or online
+                  if(!data.store_status){
+                    if($("#toggle").prop('checked') ==true){
+                      $("#toggle").click();
+                    }
+                    $("#home").css('background-color', '#ffcccb');
+                  } */
                   if(temp_home!=data.length && temp_home!=0 ){ //if new data arrive then Dom will loaded
                      //data change
                      status=true;
