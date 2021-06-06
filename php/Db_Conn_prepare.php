@@ -149,6 +149,15 @@ class DB_CONN{
     
     }
  
+    function store_home_status($query){
+        $sql =  $this->conn->query($query);
+        $array = array(); 
+        foreach  ($sql as $row) { 
+            array_push($array,array("store_status"=>$row['store_status']));    
+          }
+          echo json_encode($array);
+    }
+
 
 
     function delete_store_product($query,$product_id){
