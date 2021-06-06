@@ -54,6 +54,7 @@ function update_product_status( $store_id,$product_id,$status){
 }
 
 
+
 function get_store($user_id){
     $query = " 
     SELECT sd.*,ud.user_id,ud.lag,ud.log ,( 3959 * acos( cos( radians(ud.lag) ) * cos( radians(sd.lag) ) * cos( radians( sd.log ) - radians(ud.log) ) + sin( radians(ud.lag) ) * sin( radians( sd.lag ) ) ) ) as distance FROM store_details sd left outer join user_details ud  On ud.user_id=$user_id
@@ -73,14 +74,14 @@ function store_home_order($store_id){
     $sql = $this->connection->store_home_order($query);
 }
 function store_order_details($store_id){
-    $query = "select sd.delivery_type,ud.order_phone,ud.lag,ud.log,ud.user_address,od.* from order_details as od
+    $query = "select sd.delivery_type,ud.order_phone,ud.lag,ud.log,ud.name,ud.user_address,od.* from order_details as od
     left OUTER join user_details as ud on ud.user_id=od.user_id 
     left outer join store_details AS sd on od.store_id =sd.store_id
     WHERE od.store_id= $store_id and od.store_pickup_status = 1  and od.order_cancel_by_store_status <>1 and  od.deliveryed_status	 <>1";
     $sql = $this->connection->store_order_details($query);
 }
 function store_order_history($store_id){
-    $query = " select sd.delivery_type,ud.order_phone,ud.lag,ud.log,ud.user_address,od.* from order_details as od
+    $query = " select sd.delivery_type,ud.order_phone,ud.lag,ud.log,ud.name,ud.user_address,od.* from order_details as od
     left OUTER join user_details as ud on ud.user_id=od.user_id 
     left outer join store_details AS sd on od.store_id =sd.store_id
     WHERE od.store_id= $store_id  ";
