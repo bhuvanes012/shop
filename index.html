@@ -16,9 +16,69 @@
   
   <script>
       $(document).ready(function(){
-        Cache.delete();
+         
       });
   </script>
+<style>
+    img{
+    width: 96px;
+    height: 96px;
+    border-radius: 10px;
+    display: flex;
+}
+#productdiv{
+    width: 115%;
+}
+.product{
+    padding: 16px 3px 16px 20px;
+    display: flex;
+    margin-left: -3%;
+}
+.product_name{
+    overflow-wrap:break-all;
+}
+.product_column{
+width: 30%;
+}
+ 
+.plus{
+    width: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.minus{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.quantity{
+    width: 20px;
+    padding: 5px;
+    border: none;
+}
+ul{
+    margin-left: -9%;
+}
+ .product_details{
+ padding-left: 10px;
+ }
+ .product_name{
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 500;
+    word-break: break-word;
+ }
+ .product_size{
+    font-size: 10px;
+    font-weight: 400;
+    word-break: break-word;
+ }
+ .product_price{
+    font-size: 12px;
+    font-weight: 400;
+    word-break: break-word;
+ }
+</style>
+
 <style>
   img{
   background: transparent url('https://images.app.goo.gl/DPC6LtFUM7stK9qL9') center no-repeat;
@@ -81,76 +141,7 @@
         text-align: center;
       }
 
-.cube1, .cube2 {
-  background-color: #333;
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  top: 0;
-  left: 0;
   
-  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
-  animation: sk-cubemove 1.8s infinite ease-in-out;
-}
-
-.cube2 {
-  -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
-}
-
-@-webkit-keyframes sk-cubemove {
-  25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
-  50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
-  75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
-  100% { -webkit-transform: rotate(-360deg) }
-}
-
-@keyframes sk-cubemove {
-  25% { 
-    transform: translateX(42px) rotate(-90deg) scale(0.5);
-    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
-  } 50% { 
-    transform: translateX(42px) translateY(42px) rotate(-179deg);
-    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
-  } 50.1% { 
-    transform: translateX(42px) translateY(42px) rotate(-180deg);
-    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
-  } 75% { 
-    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
-    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
-  } 100% { 
-    transform: rotate(-360deg);
-    -webkit-transform: rotate(-360deg);
-  }
-}
-      
-@import url(https://fonts.googleapis.com/css?family=Khula:700);
- 
-.hidden {
-  opacity:0;
-}
-.console-container {
- 
-  font-family:'Times New Roman', Times, serif;
-  font-weight: bold;
-  font-size:3.5em;
-  text-align:center;
-  height:70px;
-  width:100%;
-  display:block; 
-  color:white;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-  margin:auto;
-}
-.console-underscore {
-   display:inline-block;
-  position:relative;
-  top:0;
-  left:10px;
-}
  
       
 </style>
@@ -240,52 +231,70 @@
 
         <div  class="tab-content  "   >
             <div class="tab-pane fade show active  " id="home" >
-              <div  class="container-fluid ">
- 
-                <div class="row"  id="productdiv" >
-                   
-                  <div class="  col-md-6">
-                    
-                      <div class="swiper-container">
-                        <div class="swiper-wrapper ">
-                            <div class="swiper-slide "> 
-                                <img src="./img/IMG_20180805_121223.jpg"  width="350" height="350">
-                            </div>
-                            <div class="swiper-slide"> 
-                              <video width="350" height="350" controls onplay="stopOtherMedia(this)">
-                                <source src="./video/VID-20200711-WA0006.mp4" type="video/mp4">
-                                 
-                                Your browser does not support the video tag.
-                              </video>
-                            </div>
-                            <div class="swiper-slide"> 
-                                <img   src="./img/hi.jpg"  width="350" height="350">
-                            </div>
-                            <div class="swiper-slide"> 
-                                <img   src="./img/hi.jpg"  width="350" height="350">
-                            </div>                          
+                <div id="btnContainer">
+                    <button class="btn" onclick="listView()">  List</button> 
+                    <button class="btn active" onclick="gridView()">  Grid</button>
+                 </div>
+                <div id="product_conainer" class="container ">
+                    <ul >
+                        <div id="productdiv" class="row">
+                            <li class="col-12 product list-group-item list-group-item-action ">
+                                <div class="container">
+                                    <div class="row justify-content-start">
+                                        <div class=" " >
+                                            <img   src="php/img/21622564522img2.jpg">
+                                        </div>
+                                
+                                        <div class="product_details col" >
+                                            
+                                            <span class="product_name" > product name        </span>
+                                        
+                                        <div>
+                                            <span class="product_size">  Size : gddfhfh</span>
+                                        </div>
+                
+                                        <div  class=" row  ">
+                                            <div class=" product-price col-6 align-self-start"> 
+                                                <span class="product_price">$10 278</span>
+                                            </div>
+                                            
+                                            <div class="add_button   align-self-start ">
+                                                <button  class=" btn btn-outline-info  btn-sm   ">Add + </button>
+                                            </div>
+                                            
+                                        </div>                      
+                                        </div>   
+                                            
+                                    </div>   
+                                        
+                                </div>
+                            </li>
+                            <li class="col-12 product list-group-item list-group-item-action ">
+                                    <div class="container">
+                                            <div class="row justify-content-start">
+                                                <div class=" " >
+                                                    <img   src="php/img/21622564522img2.jpg">
+                                                </div>                     
+                                                <div class="product_details col" >                              
+                                                    <span class="product_name" > Size        </span>                            
+                                                <div>
+                                                    <span class="product_size"> Size : gddfhfh</span>
+                                                </div>
+                                                    <div  class=" row  ">
+                                                        <div class="product-price col-6 align-self-start"> 
+                                                            <span class="product_price">$10000 27800</span>
+                                                        </div>                                     
+                                                    <div class="add_button   align-self-start ">
+                                                        <button  class=" btn btn-outline-info  btn-sm   ">Add + </button>
+                                                    </div>                                    
+                                                    </div>                      
+                                                </div>                                   
+                                            </div>                           
+                                    </div>
+                                </li>
                         </div>
-                        <!-- Add Pagination -->
-                      <div class=" col-md-6 swiper-pagination "></div>    
-                                                                      
-                    </div>
-                    <div class="product-price-and-shipping">
-                      <span class="productName" >paper shot</span> <br>
-                      <span class="price">₹40</span>                                                 
-                      <span  class="regular-price"><del>₹80</del></span>
-                      <span class="percent">Save ₹40 (20%)</span>
-                      <br>
-                      <div id="addButtonDIv27">
-                          <button  id="addButton27" onclick="addToCart('27',102)"  class="btn btn-warning col-sm-8 col-md-8 col-lg-8 ">Add To Card </button>
-                           
-                      </div>   
-                   </div>
-                  </div>
-                  
-
-                </div>
-
-              </div>   
+                    </ul>
+                </div> 
            
             </div>
             <div class="tab-pane fade" id="orderTrack">
@@ -383,6 +392,24 @@
 
 //alert(sessionStorage.getItem("store_product"));
 
+ 
+      // List View
+      function listView() {
+        $('li').removeClass('col-6').addClass('col-12');
+        $('.add_button').removeClass('col-12');
+        $('.product-price').removeClass('col-12').addClass('col-6');
+        $(".product_details").css({"padding-left": "10px" });
+      }
+      
+      // Grid View
+      function gridView() {
+        $('li').removeClass('col-12').addClass('col-6');
+        $('.add_button').removeClass('col-6').addClass('col-12');
+        $('.product-price').removeClass('col-6').addClass('col-12');
+        //details padding 
+        $(".product_details").css({"padding-left": "0px" });
+      }
+
       var  prodArray1 = [];
       //get order time and if more then 30 mins delete the order json in local storage
       var current_time = new Date().getTime();   
@@ -446,46 +473,30 @@
             for(i=0 ; i<data.length ;i++){
               var  prodArray = [];
                
-                         
-                        // append some text
-                        prodArray.push("<div class='col-md-6'>");                  
-                          prodArray.push("<div class='swiper-container'>");
-                            prodArray.push("<div class='swiper-wrapper'>");
-                            
-                            if(data[i].image1 != ""){
-                              prodArray.push("<div class='swiper-slide'>"); 
-                                prodArray.push("<img src='php/"+data[i].image1+" '  width='350' height='350' class='swiper-lazy'>");
-                              prodArray.push("</div>");
-                            }
-                            if(data[i].image2 != ""){
-                              prodArray.push("<div class='swiper-slide'>");
-                                prodArray.push("<img   src='php/"+data[i].image2+" '  width='350' height='350'  class='swiper-lazy'>");
-                                prodArray.push("</div>");
-                            }
-                            if(data[i].image3 != ""){
-                                prodArray.push("<div class='swiper-slide'>"); 
-                                  prodArray.push("<img   src='php/"+data[i].image3+" '  width='350' height='350' class='swiper-lazy' >");
-                                  prodArray.push("</div>");  
-                            }                        
-                              prodArray.push("</div> ");
-                                          prodArray.push("<!-- Add Pagination -->");
-                              prodArray.push("<div class='col-md-6 swiper-pagination'></div>");   
-                                                                                            
-                              prodArray.push("</div>");
-                              //product details
-                              prodArray.push("<div class='product-price-and-shipping'>");
-                                  prodArray.push("<span class ='productName' >"+data[i].product_name+"</span> <br>");
-                                  prodArray.push("<span class='price'>₹"+data[i].price+"</span>");                                                 
-                                  prodArray.push(" <span  class='regular-price'><del>₹"+Math.round((parseInt(data[i].price)/100*10)+parseInt(data[i].price))+"</del></span>");
-                                  prodArray.push("<span class='percent'>Save ₹"+Math.round(parseInt(data[i].price)/100*10)+"  (10%)</span>");
-                                  prodArray.push("<br>");
-                                  prodArray.push("<div id='addButtonDIv"+data[i].product_id+"'>");
-                                  prodArray.push(" <button  id='addButton"+data[i].product_id+"' onclick="+"addToCart('"+data[i].product_name_with +"','"+data[i].image1+"','"+data[i].store_id+"','"+data[i].product_id+"',"+data[i].price+")"+"  class='btn btn-warning col-sm-8 col-md-8 col-lg-8 '>Add To Card </button>");
-                                                
-                                  prodArray.push("</div>");   
-                              prodArray.push(" </div>");
-                            prodArray.push("</div>");
-                       
+              prodArray.push("<li class='col-12 product list-group-item list-group-item-action '>")
+                prodArray.push("<div class='container'> ");   
+                prodArray.push("  <div class='row justify-content-start'>");    
+                prodArray.push(" <div class='' >");          
+                prodArray.push(" <img   src='php/"+data[i].image1+"'>");    
+                prodArray.push(" </div>");    
+                prodArray.push(" <div class='product_details col' >");    
+                prodArray.push(" <span class='product_name' > "+data[i].product_name+"      </span>");    
+                prodArray.push("<div> ");    
+                prodArray.push(" <span class='product_size'>  Size : gddfhfh</span>");    
+                prodArray.push("</div> ");  
+                prodArray.push("<div  class=' row '>");  
+                prodArray.push("<div class=' product-price col-6 align-self-start'> "); 
+                prodArray.push(" <span class='product_price'>$"+data[i].price+"</span> ");       
+                prodArray.push("</div>");  
+                prodArray.push("<div  id='addButtonDIv"+data[i].product_id+"' class='add_button   align-self-start justify-content-between '>");  
+                prodArray.push(" <button id='addButton"+data[i].product_id+"' onclick="+"addToCart('"+data[i].product_name_with +"','"+data[i].image1+"','"+data[i].store_id+"','"+data[i].product_id+"',"+data[i].price+")"+"   class=' btn btn-outline-info  btn-sm  '>Add + </button>");  
+                prodArray.push("</div>"); 
+                prodArray.push("</div>"); 
+                prodArray.push("</div>"); 
+                prodArray.push("</div>"); 
+                prodArray.push("</div>"); 
+                prodArray.push("</li>"); 
+                 
                             $("#productdiv").append(prodArray.join(""));
                             var order = JSON.parse(localStorage.getItem("order"));
                             Object.entries(order).forEach(item => {
@@ -500,9 +511,9 @@
                                   });
                                   $("#addButtonDIv"+data[i].product_id).show();  //show the div button
                                    
-                                  $("#addButtonDIv"+data[i].product_id).append("<button id='addButtonMinus"+data[i].product_id+"' class='btn col-4'  onclick='minus("+data[i].store_id+","+data[i].product_id+","+data[i].price+")'  >-</button>");
-                                 $("#addButtonDIv"+data[i].product_id).append("<input type='number' value='"+item[1].quantity+"' min='1' max='5' class='col-3' readonly id='replyNumber"+data[i].product_id+"' data-bind='value:replyNumber' />");
-                                  $("#addButtonDIv"+data[i].product_id).append("<button id='addButtonAdd"+data[i].product_id+"' class='btn col-4' onclick='add("+data[i].store_id+","+data[i].product_id+","+data[i].price+")' >+</button>");
+                                  $("#addButtonDIv"+data[i].product_id).append("<button class='plus btn-outline-info  btn-sm  ' id='addButtonMinus"+data[i].product_id+"'    onclick='minus("+data[i].store_id+","+data[i].product_id+","+data[i].price+")'  >-</button>");
+                                 $("#addButtonDIv"+data[i].product_id).append("<input class='quantity' type='number' value='"+item[1].quantity+"' min='1' max='5'   readonly id='replyNumber"+data[i].product_id+"' data-bind='value:replyNumber' />");
+                                  $("#addButtonDIv"+data[i].product_id).append("<button class='minus btn-outline-info  btn-sm  ' id='addButtonAdd"+data[i].product_id+"'  onclick='add("+data[i].store_id+","+data[i].product_id+","+data[i].price+")' >+</button>");
           
                                    // $("#replyNumber"+id).val(parseInt(item[1].quantity) );
                                 }
@@ -523,7 +534,7 @@
         pagination: {
           el: '.swiper-pagination',
           mode: 'horizontal',
-                  loop: true
+          loop: true
         },
       });
     </script>
@@ -565,9 +576,9 @@
          $("#addButtonDIv"+id).show();  //show the div button
          //hide add button 
                
-         $("#addButtonDIv"+id).append("<button id='addButtonMinus"+id+"' class='btn col-4'  onclick='minus("+store_id+","+id+","+price+")'  >-</button>");
-         $("#addButtonDIv"+id).append("<input type='number' value='1' min='1' max='5' class='col-3' readonly id='replyNumber"+id+"' data-bind='value:replyNumber' />");
-         $("#addButtonDIv"+id).append("<button id='addButtonAdd"+id+"' class='btn col-4' onclick='add( "+store_id+","+id+","+price+")' >+</button>");
+         $("#addButtonDIv"+id).append("<button class='plus btn-outline-info  btn-sm  ' id='addButtonMinus"+id+"' class='btn col-4'  onclick='minus("+store_id+","+id+","+price+")'  >-</button>");
+         $("#addButtonDIv"+id).append("<input class='quantity' type='number' value='1' min='1' max='5' class='col-3' readonly id='replyNumber"+id+"' data-bind='value:replyNumber' />");
+         $("#addButtonDIv"+id).append("<button class='minus btn-outline-info  btn-sm  ' id='addButtonAdd"+id+"' class='btn col-4' onclick='add( "+store_id+","+id+","+price+")' >+</button>");
           
          addProductDetail(name,img,store_id,id,price);
       }
