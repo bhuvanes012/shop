@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv = 'pragma' content = 'no-cache'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap_V_4.5.2.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <script src="js/jquery-3.4.1.js"></script>
+  <link rel="stylesheet" href="css/swiper.min.css">
+  <script src="js/bootstrap_V_4.5.2.js"></script>
+  <script src="js/swiper.min.js"></script>
+  
+  <script>
+      $(document).ready(function(){
+        Cache.delete();
+      });
+  </script>
+<style>
+  img{
+  background: transparent url('https://images.app.goo.gl/DPC6LtFUM7stK9qL9') center no-repeat;
+  }
+    html,body{
+        margin-bottom: 10%;
+        height: 100%;
+    }
+    img{
+        background-position: center;
+        background-size: cover;
+        align-items: center;
+        margin-bottom: 2%;
+        padding-bottom: 2%;
+        border-radius: 10%;
+         
+      }
+      h3{
+        text-align: start;
+      }
+      #home{
+        padding-bottom: 17%;
+      }
+       
+       
+      #addButton{
+          margin-bottom: 1%;
+           
+      }
+       
+      .price{
+          font-size:xx-large;
+      }
+      .regular-price{
+          font-size:medium;
+          margin-left: 2%;  
+      }
+      .percent{
+          margin-left: 4%;
+      }
+      .productName{
+          font-size: x-large;
+      }
+      .swiper-wrapper{
+        padding-bottom: 30px;
+      }
+      .headertag {
+       position: fixed;
+     }   
+     .spinner {
+        margin: 100px auto;
+        width: 40px;
+        height: 40px;
+        position: relative;
+      }
+      .product-price-and-shipping{
+        margin-bottom: 5%;
+      }
+      input{
+        text-align: center;
+      }
+
+.cube1, .cube2 {
+  background-color: #333;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
+  animation: sk-cubemove 1.8s infinite ease-in-out;
+}
+
+.cube2 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+@-webkit-keyframes sk-cubemove {
+  25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
+  50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
+  75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
+  100% { -webkit-transform: rotate(-360deg) }
+}
+
+@keyframes sk-cubemove {
+  25% { 
+    transform: translateX(42px) rotate(-90deg) scale(0.5);
+    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+  } 50% { 
+    transform: translateX(42px) translateY(42px) rotate(-179deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+  } 50.1% { 
+    transform: translateX(42px) translateY(42px) rotate(-180deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+  } 75% { 
+    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+  } 100% { 
+    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
+}
+      
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+ 
+.hidden {
+  opacity:0;
+}
+.console-container {
+ 
+  font-family:'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size:3.5em;
+  text-align:center;
+  height:70px;
+  width:100%;
+  display:block; 
+  color:white;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
+}
+.console-underscore {
+   display:inline-block;
+  position:relative;
+  top:0;
+  left:10px;
+}
+ 
+      
+</style>
+<script>
+  $(document).ready(function(){
+  
+              consoleText(['Shop 2 Home', 'Try 🛒 2 🏠 ', 'Stay Safe 😷'], 'text',['tomato','rebeccapurple','lightblue']);
+  
+              function consoleText(words, id, colors) {
+                if (colors === undefined) colors = ['#fff'];
+                var visible = true;
+                var con = document.getElementById('console');
+                var letterCount = 1;
+                var x = 1;
+                var waiting = false;
+                var target = document.getElementById(id)
+                target.setAttribute('style', 'color:' + colors[0])
+                window.setInterval(function() {
+  
+                  if (letterCount === 0 && waiting === false) {
+                    waiting = true;
+                    target.innerHTML = words[0].substring(0, letterCount)
+                    window.setTimeout(function() {
+                      var usedColor = colors.shift();
+                      colors.push(usedColor);
+                      var usedWord = words.shift();
+                      words.push(usedWord);
+                      x = 1;
+                      target.setAttribute('style', 'color:' + colors[0])
+                      letterCount += x;
+                      waiting = false;
+                    }, 1000)
+                  } else if (letterCount === words[0].length + 1 && waiting === false) {
+                    waiting = true;
+                    window.setTimeout(function() {
+                      x = -1;
+                      letterCount += x;
+                      waiting = false;
+                    }, 1000)
+                  } else if (waiting === false) {
+                    target.innerHTML = words[0].substring(0, letterCount)
+                    letterCount += x;
+                  }
+                }, 120)
+                window.setInterval(function() {
+                  if (visible === true) {
+                    con.className = 'console-underscore hidden'
+                    visible = false;
+  
+                  } else {
+                    con.className = 'console-underscore'
+  
+                    visible = true;
+                  }
+                }, 400)
+              }
+          });
+   </script>
+ 
+</head>
+<body>
+  <div class='console-container '><span style="font-weight: bold; text-shadow: unset;" id='text'></span><div class='console-underscore' id='console'>&#95;</div></div>
+   
+    <div class="container top">
+      
+        <ul  class="nav nav-tabs nav-pills row ">
+              <li class="nav-item col-6" >
+                  <a  href="#home" class="nav-link active " data-toggle="tab"> 
+                      <i class="fa fa-home"></i> Home
+                  </a>
+              </li>
+            <!--   <li class="nav-item col-6 ">
+                  <a href="#orderTrack" class="nav-link" data-toggle="tab"> 
+                      <i class="fa fa-truck"></i> Orders
+                  </a>
+              </li>
+                -->
+    
+          </ul>
+      
+        <marquee id="available" behavior="scroll" direction="left">Only Availabe in Ramanathapuram District  </marquee>
+         
+        <div class="spinner" id="loading">
+          <div class="cube1"></div>
+          <div class="cube2"></div>
+        </div>
+
+        <div  class="tab-content  "   >
+            <div class="tab-pane fade show active  " id="home" >
+              <div  class="container-fluid ">
+ 
+                <div class="row"  id="productdiv" >
+                   
+                  <div class="  col-md-6">
+                    
+                      <div class="swiper-container">
+                        <div class="swiper-wrapper ">
+                            <div class="swiper-slide "> 
+                                <img src="./img/IMG_20180805_121223.jpg"  width="350" height="350">
+                            </div>
+                            <div class="swiper-slide"> 
+                              <video width="350" height="350" controls onplay="stopOtherMedia(this)">
+                                <source src="./video/VID-20200711-WA0006.mp4" type="video/mp4">
+                                 
+                                Your browser does not support the video tag.
+                              </video>
+                            </div>
+                            <div class="swiper-slide"> 
+                                <img   src="./img/hi.jpg"  width="350" height="350">
+                            </div>
+                            <div class="swiper-slide"> 
+                                <img   src="./img/hi.jpg"  width="350" height="350">
+                            </div>                          
+                        </div>
+                        <!-- Add Pagination -->
+                      <div class=" col-md-6 swiper-pagination "></div>    
+                                                                      
+                    </div>
+                    <div class="product-price-and-shipping">
+                      <span class="productName" >paper shot</span> <br>
+                      <span class="price">₹40</span>                                                 
+                      <span  class="regular-price"><del>₹80</del></span>
+                      <span class="percent">Save ₹40 (20%)</span>
+                      <br>
+                      <div id="addButtonDIv27">
+                          <button  id="addButton27" onclick="addToCart('27',102)"  class="btn btn-warning col-sm-8 col-md-8 col-lg-8 ">Add To Card </button>
+                           
+                      </div>   
+                   </div>
+                  </div>
+                  
+
+                </div>
+
+              </div>   
+           
+            </div>
+            <div class="tab-pane fade" id="orderTrack">
+                <h4 class="mt-2">Order Detail</h4>
+                <div class="form-group">
+                  <label for="pwd">Phone No:</label>
+                  <input type="tel" placeholder="Enter 10 digit number" class="form-control" id="pwd">
+                  <button class="btn btn-info">Track Order</button>
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="contact">
+                <h4 class="mt-2">Messages tab content</h4>
+                <p>Donec vel placerat  </p>
+                
+            </div>
+        </div>
+    </div>
+    <footer>
+    <div  class=" footer container">
+        <nav id="fixed_nav" class="navbar fixed-bottom navbar-light bg-light">
+            <a class="navbar-brand" href="#">Total :<span value ='21' id="total"></span></a>
+            <button onclick="checkout()" class="btn btn-success col-4">CheckOut</button>
+        </nav>
+    </div>
+  </footer>
+    <script src="js/swiper.min.js"></script>
+                
+    <!-- Include plugin after Swiper -->
+    <script>
+      
+      /* ========
+      Debugger plugin, simple demo plugin to console.log some of callbacks
+      ======== */
+      var myPlugin = {
+        name: 'debugger',
+        params: {
+          debugger: false,
+        },
+        on: {
+          init: function (swiper) {
+            if (!swiper.params.debugger) return;
+            console.log('init');
+          },
+          click: function (swiper, e) {
+            if (!swiper.params.debugger) return;
+            console.log('click');
+          },
+          tap: function (swiper, e) {
+            if (!swiper.params.debugger) return;
+            console.log('tap');
+          },
+          doubleTap: function (swiper, e) {
+            if (!swiper.params.debugger) return;
+            console.log('doubleTap');
+          },
+          sliderMove: function (swiper, e) {
+            if (!swiper.params.debugger) return;
+            console.log('sliderMove');
+          },
+          slideChange: function (swiper) {
+            if (!swiper.params.debugger) return;
+            console.log('slideChange', this.previousIndex, '->', this.activeIndex);
+          },
+          slideChangeTransitionStart: function (swiper) {
+            if (!swiper.params.debugger) return;
+            console.log('slideChangeTransitionStart');
+          },
+          slideChangeTransitionEnd: function (swiper) {
+            if (!swiper.params.debugger) return;
+            console.log('slideChangeTransitionEnd');
+          },
+          transitionStart: function (swiper) {
+            if (!swiper.params.debugger) return;
+            console.log('transitionStart');
+          },
+          transitionEnd: function (swiper) {
+            if (!swiper.params.debugger) return;
+            console.log('transitionEnd');
+          },
+          fromEdge: function (swiper) {
+            if (!swiper.params.debugger) return;
+            console.log('fromEdge');
+          },
+          reachBeginning: function (swiper) {
+            if (!swiper.params.debugger) return;
+            console.log('reachBeginning');
+          },
+          reachEnd: function (swiper) {
+            if (!swiper.params.debugger) return;
+            console.log('reachEnd');
+          },
+        },
+      };
+
+//alert(sessionStorage.getItem("store_product"));
+
+      var  prodArray1 = [];
+      //get order time and if more then 30 mins delete the order json in local storage
+      var current_time = new Date().getTime();   
+      if(localStorage.getItem("order_time")===null){
+      
+      }else{
+        var res = diff_minutes(current_time , localStorage.getItem("order_time")) ;   
+         if(res>30){
+           localStorage.removeItem("order")
+           localStorage.removeItem("order_time")
+         }
+      }
+      
+
+      function diff_minutes(dt2, dt1) 
+      {
+
+        console.log( dt2+"---------"+dt1);
+        var diff =(dt2  - dt1 ) / 1000;
+        diff /= 60;
+        return Math.abs(Math.round(diff));
+        
+      }
+
+      
+      if( localStorage.getItem("order") === null){
+      var ord = {}; 
+      localStorage.setItem("order", JSON.stringify(ord));
+      }else{       
+        readTotal();
+      } 
+      function readTotal(){
+        var order = JSON.parse(localStorage.getItem("order"));
+         var total =0;     
+         Object.entries(order).forEach(item => {
+                 console.log("store id"+item[1].store_id +sessionStorage.getItem("store_product"))               
+                 if(item[1].store_id == sessionStorage.getItem("store_product")){
+                  total += item[1].total                   
+                 }
+                }) 
+           console.log("total--->>"+total); 
+           $("#total").text(total);    
+      }
+      var order = JSON.parse(localStorage.getItem("order"));
+       
+       $.ajax({   //like 
+          url : 'php/index.php', // php URL
+          type: "POST",
+          data: {store_id:sessionStorage.getItem("store_product"),request:"getproduct"}, 
+          dataType:"TEXT",
+          async: false,
+          cache: false,
+          timeout: 30000,        
+           
+          success: function(data)
+          {
+          //alert(data);
+            if(data.length>4){
+            data = JSON.parse(data)
+            $("#productdiv").empty();
+            for(i=0 ; i<data.length ;i++){
+              var  prodArray = [];
+               
+                         
+                        // append some text
+                        prodArray.push("<div class='col-md-6'>");                  
+                          prodArray.push("<div class='swiper-container'>");
+                            prodArray.push("<div class='swiper-wrapper'>");
+                            
+                            if(data[i].image1 != ""){
+                              prodArray.push("<div class='swiper-slide'>"); 
+                                prodArray.push("<img src='php/"+data[i].image1+" '  width='350' height='350' class='swiper-lazy'>");
+                              prodArray.push("</div>");
+                            }
+                            if(data[i].image2 != ""){
+                              prodArray.push("<div class='swiper-slide'>");
+                                prodArray.push("<img   src='php/"+data[i].image2+" '  width='350' height='350'  class='swiper-lazy'>");
+                                prodArray.push("</div>");
+                            }
+                            if(data[i].image3 != ""){
+                                prodArray.push("<div class='swiper-slide'>"); 
+                                  prodArray.push("<img   src='php/"+data[i].image3+" '  width='350' height='350' class='swiper-lazy' >");
+                                  prodArray.push("</div>");  
+                            }                        
+                              prodArray.push("</div> ");
+                                          prodArray.push("<!-- Add Pagination -->");
+                              prodArray.push("<div class='col-md-6 swiper-pagination'></div>");   
+                                                                                            
+                              prodArray.push("</div>");
+                              //product details
+                              prodArray.push("<div class='product-price-and-shipping'>");
+                                  prodArray.push("<span class ='productName' >"+data[i].product_name+"</span> <br>");
+                                  prodArray.push("<span class='price'>₹"+data[i].price+"</span>");                                                 
+                                  prodArray.push(" <span  class='regular-price'><del>₹"+Math.round((parseInt(data[i].price)/100*10)+parseInt(data[i].price))+"</del></span>");
+                                  prodArray.push("<span class='percent'>Save ₹"+Math.round(parseInt(data[i].price)/100*10)+"  (10%)</span>");
+                                  prodArray.push("<br>");
+                                  prodArray.push("<div id='addButtonDIv"+data[i].product_id+"'>");
+                                  prodArray.push(" <button  id='addButton"+data[i].product_id+"' onclick="+"addToCart('"+data[i].product_name_with +"','"+data[i].image1+"','"+data[i].store_id+"','"+data[i].product_id+"',"+data[i].price+")"+"  class='btn btn-warning col-sm-8 col-md-8 col-lg-8 '>Add To Card </button>");
+                                                
+                                  prodArray.push("</div>");   
+                              prodArray.push(" </div>");
+                            prodArray.push("</div>");
+                       
+                            $("#productdiv").append(prodArray.join(""));
+                            var order = JSON.parse(localStorage.getItem("order"));
+                            Object.entries(order).forEach(item => {
+                                console.log("dhdhd--->>"+item[0])
+                                 
+                                if(item[1].store_id == data[i].store_id && item[0]==data[i].product_id ){
+                                  console.log("ifff@@");
+                                  $("#addButton"+data[i].product_id).hide();    
+                                  //hide div and child
+                                  $("#addButtonDIv"+data[i].product_id).each(function() {
+                                    $(this).hide();
+                                  });
+                                  $("#addButtonDIv"+data[i].product_id).show();  //show the div button
+                                   
+                                  $("#addButtonDIv"+data[i].product_id).append("<button id='addButtonMinus"+data[i].product_id+"' class='btn col-4'  onclick='minus("+data[i].store_id+","+data[i].product_id+","+data[i].price+")'  >-</button>");
+                                 $("#addButtonDIv"+data[i].product_id).append("<input type='number' value='"+item[1].quantity+"' min='1' max='5' class='col-3' readonly id='replyNumber"+data[i].product_id+"' data-bind='value:replyNumber' />");
+                                  $("#addButtonDIv"+data[i].product_id).append("<button id='addButtonAdd"+data[i].product_id+"' class='btn col-4' onclick='add("+data[i].store_id+","+data[i].product_id+","+data[i].price+")' >+</button>");
+          
+                                   // $("#replyNumber"+id).val(parseInt(item[1].quantity) );
+                                }
+                             }) 
+
+               
+            }
+            $("#loading").hide();
+          }
+        }
+        }); 
+      
+       
+    </script>
+  
+  <script>
+      var swiper = new Swiper('.swiper-container', {
+        pagination: {
+          el: '.swiper-pagination',
+          mode: 'horizontal',
+                  loop: true
+        },
+      });
+    </script>
+
+    <script>
+      
+      function stopOtherMedia(element) {
+          $("audio").not(element).each(function(index, audio) {
+            audio.pause();
+          });
+
+          $("video").not(element).each(function(index, video) {
+            video.pause();
+          });
+      }
+      
+      function pauseAll(elem){
+	      for(var i=0; i<videos.length; i++){
+            //Is this the one we want to play?
+            if(videos[i] == elem) continue;
+            //Have we already played it && is it already paused?
+            if(videos[i].played.length > 0 && !videos[i].paused){
+              // Then pause it now
+             videos[i].pause(); 
+		        }
+        }
+        
+      }
+      function addToCart( name,img,store_id,id,price){
+        console.log("id-->"+name+"--->");
+        //replace all not working here so use split 
+        var name = name ;
+         $("#addButton"+id).hide();
+        var sp=32;
+         //hide div and child
+         $("#addButtonDIv"+id).each(function() {
+          $(this).hide();
+         });
+         $("#addButtonDIv"+id).show();  //show the div button
+         //hide add button 
+               
+         $("#addButtonDIv"+id).append("<button id='addButtonMinus"+id+"' class='btn col-4'  onclick='minus("+store_id+","+id+","+price+")'  >-</button>");
+         $("#addButtonDIv"+id).append("<input type='number' value='1' min='1' max='5' class='col-3' readonly id='replyNumber"+id+"' data-bind='value:replyNumber' />");
+         $("#addButtonDIv"+id).append("<button id='addButtonAdd"+id+"' class='btn col-4' onclick='add( "+store_id+","+id+","+price+")' >+</button>");
+          
+         addProductDetail(name,img,store_id,id,price);
+      }
+         
+
+    
+        //Add value
+        function add(store_id,id,price){
+            var currentvalue = $("#replyNumber"+id).val();
+             
+            $("#replyNumber"+id).val(parseInt(currentvalue)+1);
+            addProductDetail("","",store_id,id,price);
+        }
+        //minus value
+        function minus(store_id,id,price){
+              var currentvalue = $("#replyNumber"+id).val();
+              if(parseInt(currentvalue)>0){
+                $("#replyNumber"+id).val(parseInt(currentvalue)-1);
+                addProductDetail("","",store_id,id,price)
+              }
+              if(parseInt(currentvalue)==1){  // remove the add,minus element and show the addButton
+                $("#addButtonMinus"+id).remove();
+                $("#replyNumber"+id).remove();
+                $("#addButtonAdd"+id).remove();
+                $("#addButton"+id).show();
+                
+                delete order[id];
+                localStorage.setItem("order", JSON.stringify(order));
+                console.log(order);
+                console.log(order.length);
+              }
+        }
+        function addProductDetail(name,img,store_id,id ,price){
+          
+          var orderDetail = new Object();
+          var order_time = new Date().getTime()
+          localStorage.setItem("order_time",order_time);
+         
+               orderDetail.quantity = $("#replyNumber"+id).val();
+               orderDetail.price =price;
+               orderDetail.total =($("#replyNumber"+id).val()*price);    
+               orderDetail.store_id =store_id; 
+               if(name!=""){
+                orderDetail.name =name; 
+               } else{
+                orderDetail.name =order[id].name; 
+               }   
+               if(img!=""){
+                orderDetail.img =img; 
+               }  else{
+                orderDetail.img =order[id].img; 
+               }  
+               order[id]  = orderDetail;                   
+               console.log( Object.keys(order).length )
+               var tot =0 ;
+               localStorage.setItem("order", JSON.stringify(order));
+               Object.entries(order).forEach(item => {
+                 console.log("dhdhd"+item[1].total)
+                 tot += item[1].total
+                 if(item[1].store_id != store_id){
+                  // alert("would you like to delete other shop item")
+                   order ={};
+                   orderDetail.total = price ; 
+                   order[id]  = orderDetail;      
+                   localStorage.setItem("order", JSON.stringify(order));
+                 }
+
+                }) 
+               
+               console.log("Tot----->"+tot);  
+               console.log(order);
+               $("#total").text(tot);
+               sessionStorage.setItem("total",tot)
+        }
+        function checkout(){
+          var order = JSON.parse(localStorage.getItem("order"));            
+            if(Object.keys(order).length !=0 ){
+              window.location.href="checkout.html"; 
+                
+            }
+        }
+    
+    </script>
+</body>
+</html>

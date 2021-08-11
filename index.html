@@ -11,199 +11,20 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <script src="js/jquery-3.4.1.js"></script>
   <link rel="stylesheet" href="css/swiper.min.css">
+  <link rel="stylesheet" href="css/header.css">
+  <!--user css file -->
+  <link rel="stylesheet" href="css/user_index/index.css?version=1.0">
   <script src="js/bootstrap_V_4.5.2.js"></script>
-  <script src="js/swiper.min.js"></script>
-  
-  <script>
-      $(document).ready(function(){
-         
-      });
-  </script>
-<style>
-    img{
-    width: 96px;
-    height: 96px;
-    border-radius: 10px;
-    display: flex;
-}
-#productdiv{
-    width: 115%;
-}
-.product{
-    padding: 16px 3px 16px 20px;
-    display: flex;
-    margin-left: -3%;
-}
-.product_name{
-    overflow-wrap:break-all;
-}
-.product_column{
-width: 30%;
-}
- 
-.plus{
-    width: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.minus{
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.quantity{
-    width: 20px;
-    padding: 5px;
-    border: none;
-}
-ul{
-    margin-left: -9%;
-}
- .product_details{
- padding-left: 10px;
- }
- .product_name{
-    font-size: 18px;
-    line-height: 26px;
-    font-weight: 500;
-    word-break: break-word;
- }
- .product_size{
-    font-size: 10px;
-    font-weight: 400;
-    word-break: break-word;
- }
- .product_price{
-    font-size: 12px;
-    font-weight: 400;
-    word-break: break-word;
- }
-</style>
-
-<style>
-  img{
-  background: transparent url('https://images.app.goo.gl/DPC6LtFUM7stK9qL9') center no-repeat;
-  }
-    html,body{
-        margin-bottom: 10%;
-        height: 100%;
-    }
-    img{
-        background-position: center;
-        background-size: cover;
-        align-items: center;
-        margin-bottom: 2%;
-        padding-bottom: 2%;
-        border-radius: 10%;
-         
-      }
-      h3{
-        text-align: start;
-      }
-      #home{
-        padding-bottom: 17%;
-      }
+  <script src="js/swiper.min.js" ></script>
+  <script src="js/header.js" ></script> 
        
-       
-      #addButton{
-          margin-bottom: 1%;
-           
-      }
-       
-      .price{
-          font-size:xx-large;
-      }
-      .regular-price{
-          font-size:medium;
-          margin-left: 2%;  
-      }
-      .percent{
-          margin-left: 4%;
-      }
-      .productName{
-          font-size: x-large;
-      }
-      .swiper-wrapper{
-        padding-bottom: 30px;
-      }
-      .headertag {
-       position: fixed;
-     }   
-     .spinner {
-        margin: 100px auto;
-        width: 40px;
-        height: 40px;
-        position: relative;
-      }
-      .product-price-and-shipping{
-        margin-bottom: 5%;
-      }
-      input{
-        text-align: center;
-      }
-
   
- 
-      
-</style>
-<script>
-  $(document).ready(function(){
-  
-              consoleText(['Shop 2 Home', 'Try 🛒 2 🏠 ', 'Stay Safe 😷'], 'text',['tomato','rebeccapurple','lightblue']);
-  
-              function consoleText(words, id, colors) {
-                if (colors === undefined) colors = ['#fff'];
-                var visible = true;
-                var con = document.getElementById('console');
-                var letterCount = 1;
-                var x = 1;
-                var waiting = false;
-                var target = document.getElementById(id)
-                target.setAttribute('style', 'color:' + colors[0])
-                window.setInterval(function() {
-  
-                  if (letterCount === 0 && waiting === false) {
-                    waiting = true;
-                    target.innerHTML = words[0].substring(0, letterCount)
-                    window.setTimeout(function() {
-                      var usedColor = colors.shift();
-                      colors.push(usedColor);
-                      var usedWord = words.shift();
-                      words.push(usedWord);
-                      x = 1;
-                      target.setAttribute('style', 'color:' + colors[0])
-                      letterCount += x;
-                      waiting = false;
-                    }, 1000)
-                  } else if (letterCount === words[0].length + 1 && waiting === false) {
-                    waiting = true;
-                    window.setTimeout(function() {
-                      x = -1;
-                      letterCount += x;
-                      waiting = false;
-                    }, 1000)
-                  } else if (waiting === false) {
-                    target.innerHTML = words[0].substring(0, letterCount)
-                    letterCount += x;
-                  }
-                }, 120)
-                window.setInterval(function() {
-                  if (visible === true) {
-                    con.className = 'console-underscore hidden'
-                    visible = false;
-  
-                  } else {
-                    con.className = 'console-underscore'
-  
-                    visible = true;
-                  }
-                }, 400)
-              }
-          });
-   </script>
- 
 </head>
 <body>
-  <div class='console-container '><span style="font-weight: bold; text-shadow: unset;" id='text'></span><div class='console-underscore' id='console'>&#95;</div></div>
+  <div class='console-container '>
+    <span style="font-weight: bold; text-shadow: unset;" id='text'></span>
+    <div class='console-underscore' id='console'></div>
+  </div>
    
     <div class="container top">
       
@@ -229,11 +50,11 @@ ul{
           <div class="cube2"></div>
         </div>
 
-        <div  class="tab-content  "   >
+        <div class="tab-content  "   >
             <div class="tab-pane fade show active  " id="home" >
                 <div id="btnContainer">
-                    <button class="btn" onclick="listView()">  List</button> 
-                    <button class="btn active" onclick="gridView()">  Grid</button>
+                    <button class="btn" onclick="listView()"><i class="fas fa-list"></i>  List</button> 
+                    <button class="btn active" onclick="gridView()"><i class="fas fa-th"></i>  Grid</button>
                  </div>
                 <div id="product_conainer" class="container ">
                     <ul >
@@ -259,7 +80,8 @@ ul{
                                             </div>
                                             
                                             <div class="add_button   align-self-start ">
-                                                <button  class=" btn btn-outline-info  btn-sm   ">Add + </button>
+         
+                                              <button  class=" btn btn-outline-info  btn-sm   ">Add + </button>
                                             </div>
                                             
                                         </div>                      
@@ -289,6 +111,7 @@ ul{
                                                     </div>                                    
                                                     </div>                      
                                                 </div>                                   
+         
                                             </div>                           
                                     </div>
                                 </li>
@@ -319,350 +142,14 @@ ul{
             <a class="navbar-brand" href="#">Total :<span value ='21' id="total"></span></a>
             <button onclick="checkout()" class="btn btn-success col-4">CheckOut</button>
         </nav>
-    </div>
+    </div
+    >
   </footer>
-    <script src="js/swiper.min.js"></script>
+ 
                 
     <!-- Include plugin after Swiper -->
-    <script>
-      
-      /* ========
-      Debugger plugin, simple demo plugin to console.log some of callbacks
-      ======== */
-      var myPlugin = {
-        name: 'debugger',
-        params: {
-          debugger: false,
-        },
-        on: {
-          init: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('init');
-          },
-          click: function (swiper, e) {
-            if (!swiper.params.debugger) return;
-            console.log('click');
-          },
-          tap: function (swiper, e) {
-            if (!swiper.params.debugger) return;
-            console.log('tap');
-          },
-          doubleTap: function (swiper, e) {
-            if (!swiper.params.debugger) return;
-            console.log('doubleTap');
-          },
-          sliderMove: function (swiper, e) {
-            if (!swiper.params.debugger) return;
-            console.log('sliderMove');
-          },
-          slideChange: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('slideChange', this.previousIndex, '->', this.activeIndex);
-          },
-          slideChangeTransitionStart: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('slideChangeTransitionStart');
-          },
-          slideChangeTransitionEnd: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('slideChangeTransitionEnd');
-          },
-          transitionStart: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('transitionStart');
-          },
-          transitionEnd: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('transitionEnd');
-          },
-          fromEdge: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('fromEdge');
-          },
-          reachBeginning: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('reachBeginning');
-          },
-          reachEnd: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('reachEnd');
-          },
-        },
-      };
-
-//alert(sessionStorage.getItem("store_product"));
-
- 
-      // List View
-      function listView() {
-        $('li').removeClass('col-6').addClass('col-12');
-        $('.add_button').removeClass('col-12');
-        $('.product-price').removeClass('col-12').addClass('col-6');
-        $(".product_details").css({"padding-left": "10px" });
-        $(".product_details").removeClass('col12').addClass('col');
-      }
-      
-      // Grid View
-      function gridView() {
-        $('li').removeClass('col-12').addClass('col-6');
-        $('.add_button').removeClass('col-6').addClass('col-12');
-        $('.product-price').removeClass('col-6').addClass('col-12');
-        $(".product_details").removeClass('col').addClass('col-12');
-        //details padding 
-        $(".product_details").css({"padding-left": "0px" });
-      }
-
-      var  prodArray1 = [];
-      //get order time and if more then 30 mins delete the order json in local storage
-      var current_time = new Date().getTime();   
-      if(localStorage.getItem("order_time")===null){
-      
-      }else{
-        var res = diff_minutes(current_time , localStorage.getItem("order_time")) ;   
-         if(res>30){
-           localStorage.removeItem("order")
-           localStorage.removeItem("order_time")
-         }
-      }
-      
-
-      function diff_minutes(dt2, dt1) 
-      {
-
-        console.log( dt2+"---------"+dt1);
-        var diff =(dt2  - dt1 ) / 1000;
-        diff /= 60;
-        return Math.abs(Math.round(diff));
-        
-      }
-
-      
-      if( localStorage.getItem("order") === null){
-      var ord = {}; 
-      localStorage.setItem("order", JSON.stringify(ord));
-      }else{       
-        readTotal();
-      } 
-      function readTotal(){
-        var order = JSON.parse(localStorage.getItem("order"));
-         var total =0;     
-         Object.entries(order).forEach(item => {
-                 console.log("store id"+item[1].store_id +sessionStorage.getItem("store_product"))               
-                 if(item[1].store_id == sessionStorage.getItem("store_product")){
-                  total += item[1].total                   
-                 }
-                }) 
-           console.log("total--->>"+total); 
-           $("#total").text(total);    
-      }
-      var order = JSON.parse(localStorage.getItem("order"));
-       
-       $.ajax({   //like 
-          url : 'php/index.php', // php URL
-          type: "POST",
-          data: {store_id:sessionStorage.getItem("store_product"),request:"getproduct"}, 
-          dataType:"TEXT",
-          async: false,
-          cache: false,
-          timeout: 30000,        
-           
-          success: function(data)
-          {
-          //alert(data);
-            if(data.length>4){
-            data = JSON.parse(data)
-            $("#productdiv").empty();
-            for(i=0 ; i<data.length ;i++){
-              var  prodArray = [];
-               
-              prodArray.push("<li class='col-12 product list-group-item list-group-item-action '>")
-                prodArray.push("<div class='container'> ");   
-                prodArray.push("  <div class='row justify-content-start'>");    
-                prodArray.push(" <div class='' >");          
-                prodArray.push(" <img   src='php/"+data[i].image1+"'>");    
-                prodArray.push(" </div>");    
-                prodArray.push(" <div class='product_details col' >");    
-                prodArray.push(" <span class='product_name' > "+data[i].product_name+"      </span>");    
-                prodArray.push("<div> ");    
-                prodArray.push(" <span class='product_size'>  Size : gddfhfh</span>");    
-                prodArray.push("</div> ");  
-                prodArray.push("<div  class=' row '>");  
-                prodArray.push("<div class=' product-price col-6 align-self-start'> "); 
-                prodArray.push(" <span class='product_price'>$"+data[i].price+"</span> ");       
-                prodArray.push("</div>");  
-                prodArray.push("<div  id='addButtonDIv"+data[i].product_id+"' class='add_button   align-self-start justify-content-between '>");  
-                prodArray.push(" <button id='addButton"+data[i].product_id+"' onclick="+"addToCart('"+data[i].product_name_with +"','"+data[i].image1+"','"+data[i].store_id+"','"+data[i].product_id+"',"+data[i].price+")"+"   class=' btn btn-outline-info  btn-sm  '>Add + </button>");  
-                prodArray.push("</div>"); 
-                prodArray.push("</div>"); 
-                prodArray.push("</div>"); 
-                prodArray.push("</div>"); 
-                prodArray.push("</div>"); 
-                prodArray.push("</li>"); 
-                 
-                            $("#productdiv").append(prodArray.join(""));
-                            var order = JSON.parse(localStorage.getItem("order"));
-                            Object.entries(order).forEach(item => {
-                                console.log("dhdhd--->>"+item[0])
-                                 
-                                if(item[1].store_id == data[i].store_id && item[0]==data[i].product_id ){
-                                  console.log("ifff@@");
-                                  $("#addButton"+data[i].product_id).hide();    
-                                  //hide div and child
-                                  $("#addButtonDIv"+data[i].product_id).each(function() {
-                                    $(this).hide();
-                                  });
-                                  $("#addButtonDIv"+data[i].product_id).show();  //show the div button
-                                   
-                                  $("#addButtonDIv"+data[i].product_id).append("<button class='plus btn-outline-info  btn-sm  ' id='addButtonMinus"+data[i].product_id+"'    onclick='minus("+data[i].store_id+","+data[i].product_id+","+data[i].price+")'  >-</button>");
-                                 $("#addButtonDIv"+data[i].product_id).append("<input class='quantity' type='number' value='"+item[1].quantity+"' min='1' max='5'   readonly id='replyNumber"+data[i].product_id+"' data-bind='value:replyNumber' />");
-                                  $("#addButtonDIv"+data[i].product_id).append("<button class='minus btn-outline-info  btn-sm  ' id='addButtonAdd"+data[i].product_id+"'  onclick='add("+data[i].store_id+","+data[i].product_id+","+data[i].price+")' >+</button>");
-          
-                                   // $("#replyNumber"+id).val(parseInt(item[1].quantity) );
-                                }
-                             }) 
-
-               
-            }
-            $("#loading").hide();
-          }
-        }
-        }); 
-      
-       
-    </script>
-  
-  <script>
-      var swiper = new Swiper('.swiper-container', {
-        pagination: {
-          el: '.swiper-pagination',
-          mode: 'horizontal',
-          loop: true
-        },
-      });
-    </script>
-
-    <script>
-      
-      function stopOtherMedia(element) {
-          $("audio").not(element).each(function(index, audio) {
-            audio.pause();
-          });
-
-          $("video").not(element).each(function(index, video) {
-            video.pause();
-          });
-      }
-      
-      function pauseAll(elem){
-	      for(var i=0; i<videos.length; i++){
-            //Is this the one we want to play?
-            if(videos[i] == elem) continue;
-            //Have we already played it && is it already paused?
-            if(videos[i].played.length > 0 && !videos[i].paused){
-              // Then pause it now
-             videos[i].pause(); 
-		        }
-        }
-        
-      }
-      function addToCart( name,img,store_id,id,price){
-        console.log("id-->"+name+"--->");
-        //replace all not working here so use split 
-        var name = name ;
-         $("#addButton"+id).hide();
-        var sp=32;
-         //hide div and child
-         $("#addButtonDIv"+id).each(function() {
-          $(this).hide();
-         });
-         $("#addButtonDIv"+id).show();  //show the div button
-         //hide add button 
-               
-         $("#addButtonDIv"+id).append("<button class='plus btn-outline-info  btn-sm  ' id='addButtonMinus"+id+"' class='btn col-4'  onclick='minus("+store_id+","+id+","+price+")'  >-</button>");
-         $("#addButtonDIv"+id).append("<input class='quantity' type='number' value='1' min='1' max='5' class='col-3' readonly id='replyNumber"+id+"' data-bind='value:replyNumber' />");
-         $("#addButtonDIv"+id).append("<button class='minus btn-outline-info  btn-sm  ' id='addButtonAdd"+id+"' class='btn col-4' onclick='add( "+store_id+","+id+","+price+")' >+</button>");
-          
-         addProductDetail(name,img,store_id,id,price);
-      }
-         
-
-    
-        //Add value
-        function add(store_id,id,price){
-            var currentvalue = $("#replyNumber"+id).val();
-             
-            $("#replyNumber"+id).val(parseInt(currentvalue)+1);
-            addProductDetail("","",store_id,id,price);
-        }
-        //minus value
-        function minus(store_id,id,price){
-              var currentvalue = $("#replyNumber"+id).val();
-              if(parseInt(currentvalue)>0){
-                $("#replyNumber"+id).val(parseInt(currentvalue)-1);
-                addProductDetail("","",store_id,id,price)
-              }
-              if(parseInt(currentvalue)==1){  // remove the add,minus element and show the addButton
-                $("#addButtonMinus"+id).remove();
-                $("#replyNumber"+id).remove();
-                $("#addButtonAdd"+id).remove();
-                $("#addButton"+id).show();
-                
-                delete order[id];
-                localStorage.setItem("order", JSON.stringify(order));
-                console.log(order);
-                console.log(order.length);
-              }
-        }
-        function addProductDetail(name,img,store_id,id ,price){
-          
-          var orderDetail = new Object();
-          var order_time = new Date().getTime()
-          localStorage.setItem("order_time",order_time);
-         
-               orderDetail.quantity = $("#replyNumber"+id).val();
-               orderDetail.price =price;
-               orderDetail.total =($("#replyNumber"+id).val()*price);    
-               orderDetail.store_id =store_id; 
-               if(name!=""){
-                orderDetail.name =name; 
-               } else{
-                orderDetail.name =order[id].name; 
-               }   
-               if(img!=""){
-                orderDetail.img =img; 
-               }  else{
-                orderDetail.img =order[id].img; 
-               }  
-               order[id]  = orderDetail;                   
-               console.log( Object.keys(order).length )
-               var tot =0 ;
-               localStorage.setItem("order", JSON.stringify(order));
-               Object.entries(order).forEach(item => {
-                 console.log("dhdhd"+item[1].total)
-                 tot += item[1].total
-                 if(item[1].store_id != store_id){
-                  // alert("would you like to delete other shop item")
-                   order ={};
-                   orderDetail.total = price ; 
-                   order[id]  = orderDetail;      
-                   localStorage.setItem("order", JSON.stringify(order));
-                 }
-
-                }) 
-               
-               console.log("Tot----->"+tot);  
-               console.log(order);
-               $("#total").text(tot);
-               sessionStorage.setItem("total",tot)
-        }
-        function checkout(){
-          var order = JSON.parse(localStorage.getItem("order"));            
-            if(Object.keys(order).length !=0 ){
-              window.location.href="checkout.html"; 
-                
-            }
-        }
-    
-    </script>
+     
+    <script src="js/user_index/product_listing.js?version=1.0"></script>
+    <script src="js/user_index/product_add_delete.js?version=1.0"></script>
 </body>
 </html>

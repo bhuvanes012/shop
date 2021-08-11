@@ -76,7 +76,10 @@
           margin-bottom: 1%;
            
       }
-       
+       #sub{
+         margin-top: 5%;
+         margin-bottom: 5%;
+       }
       .price{
           font-size:xx-large;
       }
@@ -459,6 +462,10 @@
                 <input type="text" placeholder="Enter product Name" class="form-control" id="prod_name">
                 <label> product Price:</label>
                 <input type="number" placeholder="Enter Price" class="form-control" id="prod_price">
+                <label> product MRP Price:</label>
+                <input type="number" placeholder="Enter Price" class="form-control" id="prod_mrp_price">
+                <label> product discount:</label>
+                <input disabled placeholder="Discount Price" class="form-control" id="prod_discount_price">
                 <label> Image 1</label>
                 <img  id="show_img1" width="auto" height="120" >
                 <input type="file"  name="img" id="img1" onchange="readURL(this,1)" accept="image/x-png,image/gif,image/jpeg" /><br>
@@ -970,7 +977,7 @@ function product_details(){
                     storeArray.push("<img src='"+"php/"+data[i].image1+"'  width='auto' height='120' >");                  
                     storeArray.push("</div>");  
                     storeArray.push("<div class='col-6 div"+data[i].product_id +"' style='align-items: center;'>");  
-                    storeArray.push(" <h6> product name sfssgsggg </h6>");  
+                    storeArray.push(" <h6> "+data[i].product_name+" </h6>");  
                     storeArray.push(" <p >$"+data[i].price+"</p>");                      
                     storeArray.push(" </div> ");  
                     storeArray.push("<div class=' col-12 div"+data[i].product_id +"'>");  
@@ -1155,8 +1162,38 @@ function product_details(){
         });
 
  }
+// -------------------------------Add product----------------------------------------------
+  var discount = 0;
+    $("#prod_price" ).keyup(function() {
+      var mrp = $("#prod_mrp_price").val();
+      var price= $("#prod_price").val();
+      
+      if(mrp==""){
+        $("#prod_discount_price").val("0 %");
+      }else if(parseInt(mrp) <parseInt(price)){
+        $("#prod_discount_price").val("0 %");
+      } else{
+        discount =Math.round(parseInt(mrp) -parseInt(price) / parseInt(mrp) *100);
+        console.log(discount);
+        $("#prod_discount_price").val(discount+" %");
+      }
+    });
 
-      $("#spin").hide();  
+    $("#prod_mrp_price").keyup(function() {
+      var mrp = $("#prod_mrp_price").val();
+      var price= $("#prod_price").val();
+      if(price==""){
+        $("#prod_discount_price").val("0 %");
+      }else if(parseInt(mrp) <parseInt(price)){
+        $("#prod_discount_price").val("0 %");
+      } else{
+        discount =Math.round(parseInt(mrp) -parseInt(price) / parseInt(mrp) *100);
+        console.log(discount);
+        $("#prod_discount_price").val(discount+" %");
+      }
+    });
+
+    $("#spin").hide();  
      var count=0;
      //uploade details
      //localStorage.setItem("store_id",'1');
@@ -1174,6 +1211,8 @@ function product_details(){
              fd.append('name',$("#prod_name").val());
              fd.append('price',$("#prod_price").val());
              fd.append('type','add');
+             fd.append('discount',discount);
+             fd.append('mrp',$("#prod_mrp_price").val());
              if($("#prod_name").val().length==0){
                count=0;
                alert("enter name");
@@ -1260,234 +1299,6 @@ function product_details(){
      }
       </script>
 
-    <script src="js/swiper.min.js"></script>
-                
-    <!-- Include plugin after Swiper -->
-    <script>
-         
-      /* ========
-      Debugger plugin, simple demo plugin to console.log some of callbacks
-      ======== */
-      var myPlugin = {
-        name: 'debugger',
-        params: {
-          debugger: false,
-        },
-        on: {
-          init: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('init');
-          },
-          click: function (swiper, e) {
-            if (!swiper.params.debugger) return;
-            console.log('click');
-          },
-          tap: function (swiper, e) {
-            if (!swiper.params.debugger) return;
-            console.log('tap');
-          },
-          doubleTap: function (swiper, e) {
-            if (!swiper.params.debugger) return;
-            console.log('doubleTap');
-          },
-          sliderMove: function (swiper, e) {
-            if (!swiper.params.debugger) return;
-            console.log('sliderMove');
-          },
-          slideChange: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('slideChange', this.previousIndex, '->', this.activeIndex);
-          },
-          slideChangeTransitionStart: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('slideChangeTransitionStart');
-          },
-          slideChangeTransitionEnd: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('slideChangeTransitionEnd');
-          },
-          transitionStart: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('transitionStart');
-          },
-          transitionEnd: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('transitionEnd');
-          },
-          fromEdge: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('fromEdge');
-          },
-          reachBeginning: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('reachBeginning');
-          },
-          reachEnd: function (swiper) {
-            if (!swiper.params.debugger) return;
-            console.log('reachEnd');
-          },
-        },
-      };
-
-      var str = "", prodArray = [];
-var name ='cake';
-// append some text
-prodArray.push("<div class='col-md-6'>");                  
-  prodArray.push("<div class='swiper-container'>");
-    prodArray.push("<div class='swiper-wrapper'>");
-      prodArray.push("<div class='swiper-slide'>"); 
-         prodArray.push("<img src='./img/IMG_20180805_121223.jpg'  width='350' height='350'>");
-      prodArray.push("</div>");
-      prodArray.push("<div class='swiper-slide'> ");
-        prodArray.push("<video width='350' height='350' controls onplay='stopOtherMedia(this)'>");
-            prodArray.push("<source src='./video/VID-20200711-WA0006.mp4' type='video/mp4'>");                  
-            prodArray.push(" Your browser does not support the video tag.");
-        prodArray.push("</video>");
-       prodArray.push(" </div>");
-       prodArray.push("<div class='swiper-slide'>");
-         prodArray.push("<img   src='./img/hi.jpg'  width='350' height='350'>");
-        prodArray.push("</div>");
-        prodArray.push("<div class='swiper-slide'>"); 
-          prodArray.push("<img   src='./img/hi.jpg'  width='350' height='350'>");
-          prodArray.push("</div>");                          
-       prodArray.push("</div>");
-                  prodArray.push("<!-- Add Pagination -->");
-       prodArray.push("<div class='col-md-6 swiper-pagination'></div>");   
-                                                                    
-      prodArray.push("</div>");
-      //product details
-      prodArray.push("<div class='product-price-and-shipping'>");
-          prodArray.push("<span id='productNam' >"+name+"</span> <br>");
-          prodArray.push("<span class='price'>₹40</span>");                                                 
-          prodArray.push(" <span  class='regular-price'><del>₹80</del></span>");
-          prodArray.push("<span class='percent'>Save ₹40 (20%)</span>");
-          prodArray.push("<br>");
-          prodArray.push("<div id='addButtonDIv22'>");
-           prodArray.push(" <button  id='addButton22' onclick="+"addToCart('22')"+"  class='btn btn-warning col-sm-8 col-md-8 col-lg-8 '>Add To Card </button>");
-                         
-          prodArray.push("</div>");   
-      prodArray.push(" </div>");
-    prodArray.push("</div>");
-            
-                                                                  
-                    
-         
-          var s = prodArray.join("")
-        $("#productdiv").append(s);
-
-        function addToCart(id){
-         $("#addButton"+id).hide();
-       
-         //hide div and child
-         $("#addButtonDIv"+id).each(function() {
-          $(this).hide();
-         });
-         $("#addButtonDIv"+id).show();  //show the div button
-         //hide add button 
-        
-                 
-         $("#addButtonDIv"+id).append("<button id='addButtonMinus"+id+"' class='btn col-4'  onclick='minus("+id+")''  >-</button>");
-         $("#addButtonDIv"+id).append("<input type='number' value='1' min='1' max='5' class='col-3' id='replyNumber"+id+"' data-bind='value:replyNumber' />");
-         $("#addButtonDIv"+id).append("<button id='addButtonAdd"+id+"' class='btn col-4' onclick='add("+id+")'' >+</button>");
-          
-        }
-        //Add value
-        function add(id){
-            var currentvalue = $("#replyNumber"+id).val();
-             
-            $("#replyNumber"+id).val(parseInt(currentvalue)+1);
-        }
-        //minus value
-        function minus(id){
-              var currentvalue = $("#replyNumber"+id).val();
-              if(parseInt(currentvalue)>0){
-                $("#replyNumber"+id).val(parseInt(currentvalue)-1);
-              }
-              if(parseInt(currentvalue)==1){  // remove the add,minus element and show the addButton
-                $("#addButtonMinus"+id).remove();
-                $("#replyNumber"+id).remove();
-                $("#addButtonAdd"+id).remove();
-                $("#addButton"+id).show();
-                
-              }
-        }
-    
-
-
-
-
-
-    </script>
-  
-  <script>
-      var swiper = new Swiper('.swiper-container', {
-        pagination: {
-          el: '.swiper-pagination',
-        },
-      });
-    </script>
-
-    <script>
-      
-      function stopOtherMedia(element) {
-          $("audio").not(element).each(function(index, audio) {
-            audio.pause();
-          });
-
-          $("video").not(element).each(function(index, video) {
-            video.pause();
-          });
-      }
-      
-      function pauseAll(elem){
-	      for(var i=0; i<videos.length; i++){
-            //Is this the one we want to play?
-            if(videos[i] == elem) continue;
-            //Have we already played it && is it already paused?
-            if(videos[i].played.length > 0 && !videos[i].paused){
-              // Then pause it now
-             videos[i].pause(); 
-		        }
-        }
-        
-      }
-      function addToCart(id){
-         $("#addButton"+id).hide();
-       
-         //hide div and child
-         $("#addButtonDIv"+id).each(function() {
-          $(this).hide();
-         });
-         $("#addButtonDIv"+id).show();  //show the div button
-         //hide add button 
-        
-                 
-         $("#addButtonDIv"+id).append("<button id='addButtonMinus"+id+"' class='btn col-4'  onclick='minus("+id+")''  >-</button>");
-         $("#addButtonDIv"+id).append("<input type='number' value='1' min='1' max='5' class='col-3' id='replyNumber"+id+"' data-bind='value:replyNumber' />");
-         $("#addButtonDIv"+id).append("<button id='addButtonAdd"+id+"' class='btn col-4' onclick='add("+id+")'' >+</button>");
-          
-        }
-        //Add value
-        function add(id){
-            var currentvalue = $("#replyNumber"+id).val();
-             
-            $("#replyNumber"+id).val(parseInt(currentvalue)+1);
-        }
-        //minus value
-        function minus(id){
-              var currentvalue = $("#replyNumber"+id).val();
-              if(parseInt(currentvalue)>0){
-                $("#replyNumber"+id).val(parseInt(currentvalue)-1);
-              }
-              if(parseInt(currentvalue)==1){  // remove the add,minus element and show the addButton
-                $("#addButtonMinus"+id).remove();
-                $("#replyNumber"+id).remove();
-                $("#addButtonAdd"+id).remove();
-                $("#addButton"+id).show();
-                
-              }
-        }
-    
-    </script>
+     
 </body>
 </html>

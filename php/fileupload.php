@@ -14,7 +14,8 @@ $db = new DB_CONN();
 $id=$_POST['id'];
 
 $name=$_POST['name'];
-
+$discount= $_POST['discount'];
+$mrp =  $_POST['mrp'];
 $price=$_POST['price'];
 //echo $id;
 $target_dir = "img//";  
@@ -57,10 +58,10 @@ if (($img3!="")){
 }
 
 if($_POST['type']=='add'){
-   $db->prod_details($id,$name,$price,$path_img1,$path_img2,$path_img3);
+   $db->prod_details($id,$name,$price,$discount,$mrp,$path_img1,$path_img2,$path_img3);
 }elseif($_POST['type']=='update'){
 
-    $db->prod_update_details($id,$_POST['product_id'],$name,$price,$path_img1,$path_img2,$path_img3);
+    $db->prod_update_details($id,$_POST['product_id'],$name,$price,$discount,$mrp,$path_img1,$path_img2,$path_img3);
 }
 
 function quality($file_size){
