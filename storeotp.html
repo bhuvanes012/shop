@@ -86,7 +86,20 @@
      }else{
          window.location.href="store.html"; 
      }
-      var phoneNumber ='';
+     //get phone in app
+     var ph = setInterval(get_phone_number, 1000);
+     
+     
+    function  get_phone_number(){
+      try{
+        var phone = Android.getPhoneNumber();
+        clearInterval(ph);
+      }catch(error){
+        
+      }
+      
+    }
+     var phoneNumber ='';
       // Paste the config your copied earlier
       $("#code").hide();
       $("#confirm-code").hide();
@@ -132,7 +145,7 @@
           $("#resend-code").show();
           $("#recaptcha-container").hide();
           $("#sign-in-button").hide();
-          
+          var code = setInterval(get_otp, 2000);
         }
         if(phoneNumber.length==13 ){
           $("#phoneNumber").hide();
@@ -157,6 +170,18 @@
         
       }
 
+      function get_otp(){
+        try{
+          var otp = Android.getOtp();
+          if(otp.length==6){
+            $("#code").val(otp);
+            submitPhoneNumberAuthCode();
+            clearInterval(code);
+          }
+        }catch(error){
+
+        }
+      }
       // This function runs when the 'confirm-code' button is clicked
       // Takes the value from the 'code' input and submits the code to verify the phone number
       // Return a user object if the authentication was successful, and auth is complete

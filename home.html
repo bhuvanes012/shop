@@ -365,31 +365,33 @@
       }
     }
     function get_loc(){
-      if(Android_status){
-        var loc_detail={};
-         
-        var json = Android.location();
-        //alert("json---->"+json)
-         loc_detail = jQuery.parseJSON(json);
-       
-        if(loc_detail.log !='' && loc_detail.log != 'null' && loc_detail.log !=undefined &&
-          loc_detail.lag !='' && loc_detail.lag != 'null' && loc_detail.lag !=undefined  &&
-          loc_detail.country !='' && loc_detail.country != 'null' && loc_detail.country !=undefined  &&
-          loc_detail.token !='' && loc_detail.token != 'null' && loc_detail.token !=undefined  &&
-          loc_detail.area !='' && loc_detail.area != 'null' && loc_detail.area !=undefined  &&
-          loc_detail.pincode !='' && loc_detail.pincode != 'null' && loc_detail.pincode !=undefined  &&
-          loc_detail.address !='' && loc_detail.address != 'null' && loc_detail.address !=undefined  &&
-          loc_detail.locality !='' && loc_detail.locality != 'null' && loc_detail.locality !=undefined   
-          ){
-          
-          //alert(loc_detail.log+loc_detail.lag+loc_detail.country+loc_detail.area+loc_detail.pincode+loc_detail.locality+loc_detail.token);
-          updateLocation(loc_detail);
-          clearInterval(loc);
-        }else{
-          //alert('null')
-        }
+     try{
+        if(Android_status){
+          var loc_detail={};        
+          var json = Android.location();
+          //alert("json---->"+json)
+          loc_detail = jQuery.parseJSON(json);       
+          if(loc_detail.log !='' && loc_detail.log != 'null' && loc_detail.log !=undefined &&
+            loc_detail.lag !='' && loc_detail.lag != 'null' && loc_detail.lag !=undefined  &&
+            loc_detail.country !='' && loc_detail.country != 'null' && loc_detail.country !=undefined  &&
+            loc_detail.token !='' && loc_detail.token != 'null' && loc_detail.token !=undefined  &&
+            loc_detail.area !='' && loc_detail.area != 'null' && loc_detail.area !=undefined  &&
+            loc_detail.pincode !='' && loc_detail.pincode != 'null' && loc_detail.pincode !=undefined  &&
+            loc_detail.address !='' && loc_detail.address != 'null' && loc_detail.address !=undefined  &&
+            loc_detail.locality !='' && loc_detail.locality != 'null' && loc_detail.locality !=undefined   
+            ){
+            
+            //alert(loc_detail.log+loc_detail.lag+loc_detail.country+loc_detail.area+loc_detail.pincode+loc_detail.locality+loc_detail.token);
+            updateLocation(loc_detail);
+            clearInterval(loc);
+          }else{
+            //alert('null')
+          }
 
-      }
+        }
+    }catch(err){
+      console.log(err);
+    }
     
     }
  
@@ -474,10 +476,10 @@
 
                           storeArray.push("")
             
-                            storeArray.push("<div  class='col-6'  onclick='getproduct("+data[i].store_id+","+data[i].distance+","+data[i].minimum_order+")' >")
+                            storeArray.push("<div  class='col-6'  onclick='getproduct("+data[i].store_id+","+data[i].distance+","+data[i].minimum_order+","+data[i].free_delivery_range +")' >")
                             storeArray.push("<img src='php/"+data[i].store_image+"'  width='auto' height='120' >")
                             storeArray.push(" </div>")
-                            storeArray.push(" <div class='col-6'  onclick='getproduct("+data[i].store_id+","+data[i].distance+","+data[i].minimum_order+")' style='align-items: center;'>")
+                            storeArray.push(" <div class='col-6'  onclick='getproduct("+data[i].store_id+","+data[i].distance+","+data[i].minimum_order+","+data[i].free_delivery_range+")' style='align-items: center;'>")
                                   
                               storeArray.push(" <h6> "+data[i].store_name+" </h6>")
                               storeArray.push(" <p >"+data[i].store_address+"</p>")
@@ -564,11 +566,12 @@
         }); 
         
         
-function getproduct(store_id,distance,minimum_order){
-  console.log("$$%#$#"+distance);
+function getproduct(store_id,distance,minimum_order,free_delivery_range){
+  console.log("$$%#$#"+free_delivery_range);
  sessionStorage.setItem("store_product",store_id);
  sessionStorage.setItem("store_distance",distance);
  sessionStorage.setItem("minimum_order",minimum_order);
+ sessionStorage.setItem("free_delivery_range",free_delivery_range);
  $("#loading").show();
  window.location.href="index.html"; 
 }
