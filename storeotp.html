@@ -64,11 +64,8 @@
         <button id="sign-in-button" class="btn btn-primary" onclick="submitPhoneNumberAuth()">
           SUBMIT
         </button>
-        <button id="confirm-code" class="btn btn-primary" onclick="submitPhoneNumberAuthCode()">
+        <button id="confirm-code" disabled  class="btn btn-primary" onclick="submitPhoneNumberAuthCode()">
           ENTER CODE
-        </button>
-        <button id="resend-code" class="btn btn-primary" onclick="submitPhoneNumberAuth()">
-          Resend Otp
         </button>
 
         <!-- Add a container for reCaptcha -->
@@ -80,6 +77,7 @@
     <script src="js/jquery-3.4.1.js"></script>
     <script>
      indexedDB.deleteDatabase('firebaseLocalStorageDb');
+     
      if(localStorage.getItem("phone")===null){
      
          
@@ -140,6 +138,10 @@
         /// console.log("recap"+JSON.parse(appVerifier));
         console.log(phoneNumber.length);
         if(appVerifier.f !=null){
+          setTimeout(function() { 
+            $('#confirm-code').removeAttr('disabled');
+          }, 5000); // for 5 second delay 
+
           $("#code").show();
           $("#confirm-code").show();
           $("#resend-code").show();
@@ -149,6 +151,7 @@
         }
         if(phoneNumber.length==13 ){
           $("#phoneNumber").hide();
+          $("#sign-in-button").hide();        
         }else{
           alert("enter 10 digit mobile number")
         }
@@ -174,6 +177,7 @@
         try{
           var otp = Android.getOtp();
           if(otp.length==6){
+
             $("#code").val(otp);
             submitPhoneNumberAuthCode();
             clearInterval(code);
