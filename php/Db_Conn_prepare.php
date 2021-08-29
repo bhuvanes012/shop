@@ -24,8 +24,8 @@ class DB_CONN{
 
     
    //product details ADD
-   function prod_details($id,$name,$price,$path_img1,$path_img2,$path_img3){
-    $sql =  $this->conn->query("INSERT INTO  product_details   (`store_id`,`image1`, `image2`, `image3`, `price`,`product_name`, `available`) VALUES ($id,'$path_img1','$path_img2','$path_img3',$price,'$name',true)");
+   function prod_details($id,$name,$price,$discount,$mrp,$path_img1,$path_img2,$path_img3){
+    $sql =  $this->conn->query("INSERT INTO  product_details   (`store_id`,`image1`, `image2`, `image3`, `price`,mrp,discount,`product_name`, `available`) VALUES ($id,'$path_img1','$path_img2','$path_img3',$price,$mrp,$discount,'$name',true)");
     if($this->conn->affected_rows >0)
     {
        echo "sucess";
@@ -41,7 +41,7 @@ class DB_CONN{
 
 
  //product details ADD
- function prod_update_details($id,$product_id,$name,$price,$path_img1,$path_img2,$path_img3){
+ function prod_update_details($id,$product_id,$name,$price,$discount,$mrp,$path_img1,$path_img2,$path_img3){
     $select =  $this->conn->query("select image1,image2,image3 from product_details where product_id= $product_id"); 
     $array = array(); 
     $img1='';  
@@ -72,7 +72,7 @@ class DB_CONN{
    }
 
 
-    $sql =  $this->conn->query("UPDATE `product_details` SET `image1`='$fimg1',`image2`='$fimg2',`image3`='$fimg3',`product_name`='$name',`price`=$price,store_id=$id  WHERE product_id=$product_id");
+    $sql =  $this->conn->query("UPDATE `product_details` SET `image1`='$fimg1',`image2`='$fimg2',`image3`='$fimg3',`product_name`='$name',`price`=$price,discount='$discount',mrp=$mrp,store_id=$id  WHERE product_id=$product_id");
     if($this->conn->affected_rows >0)
     {
        echo "sucess";
@@ -108,7 +108,7 @@ class DB_CONN{
      $sql =  $this->conn->query($query); 
      $array = array();   
      foreach  ($sql as $row) { 
-        array_push($array,array("product_id"=>$row['product_id'],"product_name"=>$row['product_name'],"product_name_with"=>str_replace(" ","~",$row['product_name']),"price"=>$row["price"],"image1"=>$row["image1"],"image2"=>$row["image2"],"image3"=>$row["image3"],"store_id"=>$row["store_id"],"status"=>$row["available"]));   // store the data in $array
+        array_push($array,array("product_id"=>$row['product_id'],"product_name"=>$row['product_name'],"product_name_with"=>str_replace(" ","~",$row['product_name']),"price"=>$row["price"],"mrp"=>$row["mrp"],"discount"=>$row["discount"],"image1"=>$row["image1"],"image2"=>$row["image2"],"image3"=>$row["image3"],"store_id"=>$row["store_id"],"status"=>$row["available"]));   // store the data in $array
       
       }
       echo json_encode($array);
@@ -283,7 +283,7 @@ function store_home_order($query){
         $sql =  $this->conn->query($query); 
         $array = array();   
         foreach  ($sql as $row) { 
-           array_push($array,array("store_id"=>$row['store_id'],"store_image"=>$row['store_image'],"store_address"=>$row["store_address"],"store_name"=>$row["store_name"],"distance"=>$row["distance"],"minimum_order"=>$row["minimum_order"] ));   // store the data in $array
+           array_push($array,array("store_id"=>$row['store_id'],"store_image"=>$row['store_image'],"store_address"=>$row["store_address"],"store_name"=>$row["store_name"],"distance"=>$row["distance"],"minimum_order"=>$row["minimum_order"],"free_delivery_range"=>$row["free_delivery_range"] ));   // store the data in $array
          
          }
          echo json_encode($array);
