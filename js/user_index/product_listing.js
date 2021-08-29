@@ -69,6 +69,21 @@
            console.log("total--->>"+total); 
            $("#total").text(total);    
       }
+      function imgclick(img1,img2, img3){
+        alert(img1+img2+img3);
+        if(img1!=""){
+          $("#modal_img1").attr('src', "php/"+img1);
+        }
+        if(img2!=""){
+          $("#modal_img2").attr('src', "php/"+img2);
+        }
+        if(img3!=""){
+          $("#modal_img3").attr('src', "php/"+img3);
+        }
+        $('#modal_tigger').trigger('click');
+      }
+
+
       var order = JSON.parse(localStorage.getItem("order"));
        
        $.ajax({   //like 
@@ -93,7 +108,7 @@
                 prodArray.push("<div class='container'> ");   
                 prodArray.push("  <div class='row justify-content-start'>");    
                 prodArray.push(" <div id='img_div' class='' >");          
-                 prodArray.push(" <img   src='php/"+data[i].image1+"'>");
+                 prodArray.push(" <img  onclick=imgclick('"+data[i].image1 +"','"+data[i].image2+"','"+data[i].image3+"')  src='php/"+data[i].image1+"'>");
                  if(data[i].discount!="0"){
                   prodArray.push(" <div  id='img_dis_lable' class='img_dis_lable justify-content-center'>");   
                   prodArray.push("<span   <i class='fa fa-tag red-color fa-1.5x' aria-hidden='true'></i> </span> <h8 class='dis_text'>"+data[i].discount+"% </h8> ")

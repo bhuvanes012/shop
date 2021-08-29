@@ -413,14 +413,10 @@
            if(sessionStorage.getItem("store_distance")===null){
 
             }else{
-              var del_charge = Math.round(sessionStorage.getItem("store_distance")*4);
-              if(del_charge<15){
-                del_charge=15;
-                total = total+15
-              }else{
-              total = total+(sessionStorage.getItem("store_distance")*4)
-              
-              }  
+              var del_charge = Math.round((sessionStorage.getItem("store_distance")-sessionStorage.getItem("free_delivery_range"))*8);
+               
+              total = total+del_charge
+               
               $("#del_charge").text(del_charge); 
             }
             console.log("tot--->?"+total);
@@ -488,10 +484,8 @@
         if(sessionStorage.getItem("store_distance")===null){
           del_charge =0;
         } else{
-          del_charge =Math.round(sessionStorage.getItem("store_distance")*4);
-          if(del_charge<15){
-            del_charge=15;
-          }
+          del_charge = Math.round((sessionStorage.getItem("store_distance")-sessionStorage.getItem("free_delivery_range"))*8);
+           
         } 
         $.ajax({   //like 
               url : 'php/index.php', // php URL

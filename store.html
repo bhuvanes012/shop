@@ -1173,7 +1173,7 @@ function product_details(){
       }else if(parseInt(mrp) <parseInt(price)){
         $("#prod_discount_price").val("0 %");
       } else{
-        discount =Math.round(parseInt(mrp) -parseInt(price) / parseInt(mrp) *100);
+        discount =Math.round(100-(parseInt(price) / parseInt(mrp) *100));
         console.log(discount);
         $("#prod_discount_price").val(discount+" %");
       }
@@ -1187,7 +1187,7 @@ function product_details(){
       }else if(parseInt(mrp) <parseInt(price)){
         $("#prod_discount_price").val("0 %");
       } else{
-        discount =Math.round(parseInt(mrp) -parseInt(price) / parseInt(mrp) *100);
+        discount =Math.round(100-(parseInt(price) / parseInt(mrp) *100));
         console.log(discount);
         $("#prod_discount_price").val(discount+" %");
       }
